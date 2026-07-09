@@ -14,22 +14,21 @@ public class ImageService {
 
     private final Cloudinary cloudinary;
 
-    public Map<String, Object> upload(MultipartFile file) throws Exception {
+    public Map upload(MultipartFile image) throws Exception {
 
         return cloudinary.uploader().upload(
-                file.getBytes(),
+                image.getBytes(),
                 ObjectUtils.emptyMap()
         );
 
     }
+
     public void deleteImage(String publicId) throws Exception {
 
-        cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
-
-    }
-    public void delete(String publicId) throws Exception {
-
-        cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+        cloudinary.uploader().destroy(
+                publicId,
+                ObjectUtils.emptyMap()
+        );
 
     }
 
