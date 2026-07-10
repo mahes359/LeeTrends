@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Collections from "./pages/Collections";
 import Contact from "./pages/Contact";
 import DressDetails from "./pages/DressDetails";
+import NotFound from "./pages/NotFound";
 
 import Dashboard from "./pages/Admin/Dashboard";
 import UploadDress from "./pages/Admin/UploadDress";
@@ -43,7 +44,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/admin/edit/:id"
           element={
@@ -53,7 +53,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

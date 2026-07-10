@@ -1,33 +1,16 @@
+import { Link } from "react-router-dom";
 import bridal from "../../assets/images/bridal1.jpg";
 import party from "../../assets/images/party1.jpg";
 import ethnic from "../../assets/images/ethnic1.jpg";
 import kids from "../../assets/images/kids1.jpg";
 
 const categories = [
-  {
-    title: "Bridal Wear",
-    image: bridal,
-  },
-  {
-    title: "Party Wear",
-    image: party,
-  },
-  {
-    title: "Ethnic Wear",
-    image: ethnic,
-  },
-  {
-    title: "Kids Wear",
-    image: kids,
-  },
-  {
-    title: "Designer Blouses",
-    image: bridal,
-  },
-  {
-    title: "Custom Orders",
-    image: party,
-  },
+  { title: "Bridal Wear", image: bridal, filter: "Bridal" },
+  { title: "Party Wear", image: party, filter: "Party Wear" },
+  { title: "Ethnic Wear", image: ethnic, filter: "Ethnic" },
+  { title: "Kids Wear", image: kids, filter: "Kids Wear" },
+  { title: "Designer Blouses", image: bridal, filter: "All" },
+  { title: "Custom Orders", image: party, filter: "All" },
 ];
 
 function Categories() {
@@ -65,9 +48,12 @@ function Categories() {
                   {item.title}
                 </h3>
 
-                <button className="mt-5 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full">
+                <Link
+                  to={`/collections`}
+                  className="inline-block mt-5 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full"
+                >
                   View Collection
-                </button>
+                </Link>
 
               </div>
 

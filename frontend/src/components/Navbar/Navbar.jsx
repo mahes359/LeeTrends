@@ -47,9 +47,12 @@ function Navbar() {
             <FaWhatsapp className="text-2xl text-green-500" />
           </a>
 
-          <button className="bg-pink-600 text-white px-6 py-2 rounded-full hover:bg-pink-700 duration-300">
+          <Link
+            to="/contact"
+            className="bg-pink-600 text-white px-6 py-2 rounded-full hover:bg-pink-700 duration-300"
+          >
             Book Now
-          </button>
+          </Link>
 
         </div>
 

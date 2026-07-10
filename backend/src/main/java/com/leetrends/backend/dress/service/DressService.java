@@ -5,6 +5,7 @@ import com.leetrends.backend.dress.dto.DressRequest;
 import com.leetrends.backend.dress.dto.DressResponse;
 import com.leetrends.backend.dress.entity.Dress;
 import com.leetrends.backend.dress.repository.DressRepository;
+import com.leetrends.backend.exception.ResourceNotFoundException;
 import com.leetrends.backend.mapper.DressMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,8 @@ public class DressService {
             MultipartFile image
     ) throws Exception {
 
-        Dress dress = repository.findById(id).orElseThrow();
+        Dress dress = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Dress not found with id: " + id));
 
         dress.setName(request.getName());
         dress.setCategory(request.getCategory());
@@ -54,8 +56,8 @@ public class DressService {
         dress.setColor(request.getColor());
         dress.setSize(request.getSize());
         dress.setOccasion(request.getOccasion());
-        dress.setFeatured(request.getFeatured());
-        dress.setAvailable(request.getAvailable());
+        dress.setFeatured(request.getFeatured() != null ? request.getFeatured() : false);
+        dress.setAvailable(request.getAvailable() != null ? request.getAvailable() : true);
 
         if (image != null && !image.isEmpty()) {
 
@@ -75,7 +77,8 @@ public class DressService {
 
     public void delete(Long id) throws Exception {
 
-        Dress dress = repository.findById(id).orElseThrow();
+        Dress dress = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Dress not found with id: " + id));
 
         if (dress.getCloudinaryId() != null) {
             imageService.deleteImage(dress.getCloudinaryId());
@@ -84,9 +87,11 @@ public class DressService {
         repository.delete(dress);
 
     }
+
     public Dress getById(Long id) {
 
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Dress not found with id: " + id));
 
     }
 
@@ -108,8 +113,8 @@ public class DressService {
                 .color(request.getColor())
                 .size(request.getSize())
                 .occasion(request.getOccasion())
-                .featured(request.getFeatured())
-                .available(request.getAvailable())
+                .featured(request.getFeatured() != null ? request.getFeatured() : false)
+                .available(request.getAvailable() != null ? request.getAvailable() : true)
                 .imageUrl(upload.get("secure_url").toString())
                 .cloudinaryId(upload.get("public_id").toString())
                 .build();
