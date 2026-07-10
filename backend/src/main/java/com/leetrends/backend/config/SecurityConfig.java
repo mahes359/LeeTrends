@@ -41,7 +41,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET,
-                                "/api/dresses/**")
+                                "/api/dresses/**",
+                                "/api/testimonials")
                         .permitAll()
 
                         .anyRequest()

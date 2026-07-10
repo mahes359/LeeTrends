@@ -1,60 +1,53 @@
-import bridal1 from "../../assets/images/bridal1.jpg";
-import bridal2 from "../../assets/images/bridal2.jpg";
-import party1 from "../../assets/images/party1.jpg";
-import ethnic1 from "../../assets/images/ethnic1.jpg";
-import kids1 from "../../assets/images/kids1.jpg";
-import hero from "../../assets/images/hero.jpg";
+import { useEffect } from "react";
+import { FaInstagram } from "react-icons/fa";
+import config from "../../config";
 
 function Gallery() {
+  useEffect(() => {
+    if (!document.querySelector("script[src*='behold.so']")) {
+      const script = document.createElement("script");
+      script.src = "https://w.behold.so/widget.js";
+      script.type = "module";
+      document.head.appendChild(script);
+    }
+  }, []);
 
-    const images = [
-        bridal1,
-        bridal2,
-        party1,
-        ethnic1,
-        kids1,
-        hero
-    ];
+  return (
+    <section className="py-24 md:py-36 bg-white">
+      <div className="max-w-7xl mx-auto px-6 md:px-16">
 
-    return (
+        <div className="text-center mb-16 md:mb-24">
+          <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-4 font-medium">Instagram</p>
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+            Our Gallery
+          </h2>
+          <div className="w-20 h-px bg-rose-400 mx-auto mt-8 mb-6" />
+          <p className="text-gray-400 text-sm tracking-wide">
+            Follow{" "}
+            <a href={config.instagram} target="_blank" rel="noreferrer" className="text-rose-500 hover:text-rose-700 transition-colors">
+              @lee_trend_s
+            </a>{" "}
+            for the latest collections
+          </p>
+        </div>
 
-        <section className="max-w-7xl mx-auto py-20 px-6">
+        <behold-widget feed-id={config.beholdWidgetId} class="w-full" />
 
-            <h2 className="text-4xl font-bold text-center mb-4">
-                Instagram Gallery
-            </h2>
+        <div className="text-center mt-14">
+          <a
+            href={config.instagram}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-3 border border-rose-300 text-rose-600 px-10 py-4 text-sm tracking-widest uppercase hover:bg-rose-600 hover:text-white hover:border-rose-600 transition-all duration-300"
+          >
+            <FaInstagram size={16} />
+            Follow on Instagram
+          </a>
+        </div>
 
-            <p className="text-center text-gray-500 mb-12">
-                Follow Lee Trends for the latest collections
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-
-                {images.map((image, index) => (
-
-                    <a
-                        key={index}
-                        href="https://instagram.com/"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-
-                        <img
-                            src={image}
-                            alt="Gallery"
-                            className="w-full h-72 object-cover rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl duration-300"
-                        />
-
-                    </a>
-
-                ))}
-
-            </div>
-
-        </section>
-
-    );
-
+      </div>
+    </section>
+  );
 }
 
 export default Gallery;

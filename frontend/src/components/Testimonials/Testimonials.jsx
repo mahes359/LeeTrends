@@ -1,63 +1,74 @@
+import { useEffect, useState } from "react";
+import { getTestimonials } from "../../services/testimonialService";
+
 function Testimonials() {
+  const [reviews, setReviews] = useState([]);
 
-    const reviews = [
+  useEffect(() => {
+    getTestimonials().then(setReviews).catch(console.error);
+  }, []);
 
-        {
-            name: "Priya",
-            text: "The bridal lehenga was absolutely beautiful. Perfect stitching and premium quality."
-        },
+  if (reviews.length === 0) return null;
 
-        {
-            name: "Divya",
-            text: "Excellent customer service and the dress fit perfectly. Highly recommended."
-        },
+  return (
+    <section className="py-24 md:py-36 bg-rose-950 text-white overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-96 h-96 bg-rose-900/30 rounded-full -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-rose-900/20 rounded-full translate-x-1/3 translate-y-1/3" />
 
-        {
-            name: "Anitha",
-            text: "Affordable price with amazing quality. I'll definitely order again."
-        }
+      <div className="max-w-7xl mx-auto px-6 md:px-16 relative z-10">
 
-    ];
+        <div className="text-center mb-16 md:mb-24">
+          <p className="text-rose-300 text-xs tracking-[0.5em] uppercase mb-4 font-medium">
+            Testimonials
+          </p>
+          <h2
+            className="text-5xl md:text-6xl font-bold text-white"
+            style={{ fontFamily: "Cormorant Garamond, serif" }}
+          >
+            Words from Our Clients
+          </h2>
+          <div className="w-20 h-px bg-rose-400 mx-auto mt-8" />
+        </div>
 
-    return (
+        <div className="grid md:grid-cols-3 gap-8">
+          {reviews.map((r) => (
+            <div
+              key={r.id}
+              className="relative bg-white/5 border border-white/10 p-10 hover:bg-white/10 hover:border-rose-400/50 transition-all duration-500 group"
+            >
+              <span
+                className="absolute top-6 right-8 text-9xl text-rose-800/50 group-hover:text-rose-700/70 transition-colors select-none leading-none"
+                style={{ fontFamily: "Georgia, serif" }}
+              >
+                "
+              </span>
 
-        <section className="max-w-7xl mx-auto py-20 px-6">
-
-            <h2 className="text-4xl font-bold text-center mb-12">
-                What Our Customers Say
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8">
-
-                {reviews.map((review, index) => (
-
-                    <div
-                        key={index}
-                        className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition"
-                    >
-
-                        <p className="text-yellow-500 text-2xl mb-4">
-                            ★★★★★
-                        </p>
-
-                        <p className="text-gray-600 italic">
-                            "{review.text}"
-                        </p>
-
-                        <h3 className="font-bold mt-6">
-                            — {review.name}
-                        </h3>
-
-                    </div>
-
+              <div className="flex gap-1 mb-6">
+                {Array.from({ length: r.rating }).map((_, j) => (
+                  <span key={j} className="text-amber-400 text-base">★</span>
                 ))}
+              </div>
 
+              <p className="text-gray-300 leading-9 text-sm italic relative z-10 mb-10">
+                "{r.text}"
+              </p>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-rose-600 flex items-center justify-center text-white font-bold text-base shrink-0">
+                  {r.name[0]}
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-sm">{r.name}</p>
+                  <p className="text-rose-300 text-xs tracking-widest uppercase mt-1">{r.role}</p>
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
 
-        </section>
-
-    );
-
+      </div>
+    </section>
+  );
 }
 
 export default Testimonials;

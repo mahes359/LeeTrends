@@ -1,78 +1,62 @@
-import { FaTshirt, FaCut, FaUserTie, FaClock } from "react-icons/fa";
+import { FaTshirt, FaCut, FaHeart, FaClock } from "react-icons/fa";
+
+const services = [
+  { icon: FaTshirt, title: "Customized Designs", desc: "Every dress is crafted to your exact style, measurements, and vision.", num: "01" },
+  { icon: FaCut, title: "Perfect Stitching", desc: "Professional finishing with premium quality fabrics and expert tailoring.", num: "02" },
+  { icon: FaHeart, title: "Bridal Specialists", desc: "Wedding, Reception, Engagement and exclusive Designer Wear.", num: "03" },
+  { icon: FaClock, title: "On-Time Delivery", desc: "We value your time and ensure every order is delivered promptly.", num: "04" },
+];
 
 function Services() {
+  return (
+    <section className="py-24 md:py-36 bg-[#fdf8f5]">
+      <div className="max-w-7xl mx-auto px-6 md:px-16">
 
-    const services = [
+        <div className="text-center mb-16 md:mb-24">
+          <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-4 font-medium">
+            Why Choose Us
+          </p>
+          <h2
+            className="text-5xl md:text-6xl font-bold text-gray-900"
+            style={{ fontFamily: "Cormorant Garamond, serif" }}
+          >
+            The Lee Trends Promise
+          </h2>
+          <div className="w-20 h-px bg-rose-400 mx-auto mt-8" />
+        </div>
 
-        {
-            icon: <FaTshirt size={45} />,
-            title: "Customized Designs",
-            desc: "Every dress is designed according to your style and measurements."
-        },
-
-        {
-            icon: <FaCut size={45} />,
-            title: "Perfect Stitching",
-            desc: "Professional finishing with premium quality stitching."
-        },
-
-        {
-            icon: <FaUserTie size={45} />,
-            title: "Bridal Specialists",
-            desc: "Wedding, Reception, Engagement and Designer Wear."
-        },
-
-        {
-            icon: <FaClock size={45} />,
-            title: "On-Time Delivery",
-            desc: "We value your time and deliver every order promptly."
-        }
-
-    ];
-
-    return (
-
-        <section className="py-24 bg-pink-50">
-
-            <div className="max-w-7xl mx-auto px-6">
-
-                <h2 className="text-5xl font-bold text-center mb-16">
-                    Why Choose Lee Trends
-                </h2>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                    {services.map((service, index) => (
-
-                        <div
-                            key={index}
-                            className="bg-white rounded-3xl shadow-lg p-8 text-center hover:-translate-y-3 transition duration-300"
-                        >
-
-                            <div className="text-pink-600 flex justify-center mb-6">
-                                {service.icon}
-                            </div>
-
-                            <h3 className="text-2xl font-semibold mb-4">
-                                {service.title}
-                            </h3>
-
-                            <p className="text-gray-600">
-                                {service.desc}
-                            </p>
-
-                        </div>
-
-                    ))}
-
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((s, i) => (
+            <div
+              key={i}
+              className="group relative bg-white border border-rose-100 p-10 hover:border-rose-300 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+            >
+              <span
+                className="absolute top-5 right-6 text-8xl font-bold text-rose-50 group-hover:text-rose-100 transition-colors duration-300 select-none leading-none"
+                style={{ fontFamily: "Cormorant Garamond, serif" }}
+              >
+                {s.num}
+              </span>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-rose-50 group-hover:bg-rose-100 flex items-center justify-center mb-8 transition-colors duration-300">
+                  <s.icon className="text-rose-600" size={26} />
                 </div>
-
+                <h3
+                  className="text-2xl font-semibold text-gray-900 mb-4"
+                  style={{ fontFamily: "Cormorant Garamond, serif" }}
+                >
+                  {s.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-8">{s.desc}</p>
+              </div>
+              <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-500 group-hover:w-full transition-all duration-500" />
             </div>
+          ))}
+        </div>
 
-        </section>
-
-    );
-
+      </div>
+    </section>
+  );
 }
 
 export default Services;

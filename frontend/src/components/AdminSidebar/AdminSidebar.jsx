@@ -22,6 +22,10 @@ function AdminSidebar() {
                     Upload Dress
                 </Link>
 
+                <Link to="/admin/testimonials">
+                    Testimonials
+                </Link>
+
                 <Link to="/collections">
                     Website
                 </Link>
