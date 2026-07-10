@@ -1,6 +1,5 @@
 package com.leetrends.backend.dress.service;
 
-import com.cloudinary.utils.ObjectUtils;
 import com.leetrends.backend.cloudinary.ImageService;
 import com.leetrends.backend.dress.dto.DressRequest;
 import com.leetrends.backend.dress.dto.DressResponse;
@@ -64,7 +63,7 @@ public class DressService {
                 imageService.deleteImage(dress.getCloudinaryId());
             }
 
-            Map upload = imageService.upload(image);
+            Map<String, Object> upload = imageService.upload(image);
 
             dress.setImageUrl(upload.get("secure_url").toString());
             dress.setCloudinaryId(upload.get("public_id").toString());
@@ -94,7 +93,11 @@ public class DressService {
     public Dress create(DressRequest request,
                         MultipartFile image) throws Exception {
 
-        Map upload = imageService.upload(image);
+        if (image == null || image.isEmpty()) {
+            throw new IllegalArgumentException("An image is required to create a dress");
+        }
+
+        Map<String, Object> upload = imageService.upload(image);
 
         Dress dress = Dress.builder()
                 .name(request.getName())

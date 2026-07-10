@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllDresses } from "../../services/dressService";
+import { getFeaturedDresses } from "../../services/dressService";
 import { Link } from "react-router-dom";
 
 function Featured() {

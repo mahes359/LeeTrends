@@ -36,50 +36,18 @@ public class DressController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Dress create(
-
-            @RequestPart DressRequest dress,
-
-            @RequestPart MultipartFile image
-
+            @ModelAttribute DressRequest dress,
+            @RequestParam(value = "image", required = false) MultipartFile image
     ) throws Exception {
-
-        return service.create(dress,image);
-
+        return service.create(dress, image);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Dress updateDress(
-
             @PathVariable Long id,
-
-            @RequestParam String name,
-            @RequestParam String category,
-            @RequestParam Double price,
-            @RequestParam String description,
-            @RequestParam String fabric,
-            @RequestParam String color,
-            @RequestParam String size,
-            @RequestParam String occasion,
-            @RequestParam Boolean featured,
-            @RequestParam Boolean available,
-
-            @RequestParam(required = false) MultipartFile image
-
+            @ModelAttribute DressRequest request,
+            @RequestParam(value = "image", required = false) MultipartFile image
     ) throws Exception {
-
-        DressRequest request = new DressRequest();
-
-        request.setName(name);
-        request.setCategory(category);
-        request.setPrice(price);
-        request.setDescription(description);
-        request.setFabric(fabric);
-        request.setColor(color);
-        request.setSize(size);
-        request.setOccasion(occasion);
-        request.setFeatured(featured);
-        request.setAvailable(available);
-
         return service.update(id, request, image);
     }
 

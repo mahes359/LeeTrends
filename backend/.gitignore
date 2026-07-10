@@ -1,35 +1,74 @@
-HELP.md
+# ==========================
+# Maven
+# ==========================
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# ==========================
+# Spring Boot
+# ==========================
+HELP.md
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# ==========================
+# Environment Variables
+# ==========================
+.env
+.env.*
+!.env.example
+
+# ==========================
+# Logs
+# ==========================
+logs/
+*.log
+
+# ==========================
+# IntelliJ IDEA
+# ==========================
+.idea/
 *.iml
 *.ipr
+*.iws
 
-### NetBeans ###
+# ==========================
+# Eclipse / STS
+# ==========================
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache/
+.factorypath
+.apt_generated
+
+# ==========================
+# NetBeans
+# ==========================
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# ==========================
+# VS Code
+# ==========================
 .vscode/
+!.vscode/extensions.json
 
-.env
+# ==========================
+# OS Files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Generated Files
+# ==========================
+build/
+out/
+
+# ==========================
+# Keep Wrapper
+# ==========================
+!.mvn/wrapper/maven-wrapper.properties
