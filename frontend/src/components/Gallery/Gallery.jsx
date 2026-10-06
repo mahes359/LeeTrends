@@ -13,39 +13,53 @@ function Gallery() {
   }, []);
 
   return (
-    <section className="py-28 md:py-40 bg-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-16">
+    <section className="py-24 md:py-32 bg-white relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
-        <div className="text-center mb-18 md:mb-28">
-          <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-4 font-medium">Instagram</p>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-            Our Gallery
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+          <span className="inline-block px-3.5 py-1 bg-rose-50 text-rose-700 border border-rose-200/60 text-[10px] tracking-[0.3em] uppercase font-semibold rounded-full mb-3">
+            Social Studio
+          </span>
+          <h2
+            className="text-4xl md:text-5xl font-bold text-gray-900 tracking-wide"
+            style={{ fontFamily: "Cormorant Garamond, serif" }}
+          >
+            Live from Instagram
           </h2>
-          <div className="flex items-center justify-center gap-3 mt-8 mb-7">
-            <div className="w-8 h-px bg-rose-300" />
-            <div className="w-2 h-2 rounded-full bg-rose-400" />
-            <div className="w-8 h-px bg-rose-300" />
+          <div className="flex items-center justify-center gap-3 mt-4 mb-4">
+            <div className="w-10 h-px bg-rose-200" />
+            <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+            <div className="w-10 h-px bg-rose-200" />
           </div>
-          <p className="text-gray-400 text-sm tracking-wide">
-            Follow{" "}
-            <a href={config.instagram} target="_blank" rel="noreferrer" className="text-rose-500 hover:text-rose-700 transition-colors font-medium">
+          <p className="text-gray-500 text-sm font-light">
+            Follow our behind-the-scenes bespoke trials and reels at{" "}
+            <a
+              href={config.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="text-rose-700 hover:text-rose-900 font-semibold underline decoration-rose-300 underline-offset-4"
+            >
               @lee_trend_s
-            </a>{" "}
-            for the latest collections
+            </a>
           </p>
         </div>
 
-        <behold-widget feed-id={config.beholdWidgetId} class="w-full" />
+        {/* Behold Widget Box */}
+        <div className="rounded-3xl overflow-hidden border border-rose-100/70 p-2 sm:p-4 bg-[#fdf8f5] shadow-xs">
+          <behold-widget feed-id={config.beholdWidgetId} class="w-full" />
+        </div>
 
-        <div className="text-center mt-16">
+        {/* Follow Button */}
+        <div className="text-center mt-12">
           <a
             href={config.instagram}
             target="_blank"
             rel="noreferrer"
-            className="btn-glow inline-flex items-center gap-3 border border-rose-300 text-rose-600 px-10 py-4 text-sm tracking-widest uppercase hover:bg-rose-600 hover:text-white hover:border-rose-600 transition-all duration-300 rounded-sm"
+            className="btn-glow inline-flex items-center gap-2.5 bg-rose-700 hover:bg-rose-800 text-white px-8 py-3.5 rounded-full text-xs tracking-[0.2em] uppercase font-semibold shadow-md shadow-rose-900/20 transition-all duration-300"
           >
             <FaInstagram size={16} />
-            Follow on Instagram
+            <span>Follow @lee_trend_s</span>
           </a>
         </div>
 

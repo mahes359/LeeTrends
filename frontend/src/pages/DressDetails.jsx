@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import API from "../services/api";
 import Footer from "../components/Footer/Footer";
-import { FaWhatsapp } from "react-icons/fa";
-import { FiArrowLeft } from "react-icons/fi";
-
+import { FaWhatsapp, FaGem, FaRulerCombined, FaShippingFast, FaCheckCircle } from "react-icons/fa";
+import { FiArrowLeft, FiTag, FiLayers, FiMaximize2, FiCalendar, FiDroplet } from "react-icons/fi";
 import config from "../config";
 
 function DressDetails() {
@@ -21,16 +20,16 @@ function DressDetails() {
 
   function bookNow() {
     const phone = config.whatsapp;
-    const message = `🌸 Hello Lee Trends,\n\nI'm interested in the following dress.\n\n👗 Dress Name : ${dress.name}\n📂 Category : ${dress.category}\n💰 Price : ₹${dress.price}\n🧵 Fabric : ${dress.fabric}\n🎨 Color : ${dress.color}\n📏 Size : ${dress.size}\n🎉 Occasion : ${dress.occasion}\n\nPlease share more details regarding availability and booking.\n\nThank you.`;
+    const message = `🌸 Hello Lee Trends,\n\nI'm interested in booking the following bespoke dress:\n\n👗 Dress: ${dress.name}\n📂 Category: ${dress.category}\n💰 Price: ₹${dress.price?.toLocaleString()}\n🧵 Fabric: ${dress.fabric || "Custom"}\n🎨 Color: ${dress.color || "As Shown"}\n📏 Size: ${dress.size || "Custom"}\n🎉 Occasion: ${dress.occasion || "Bespoke"}\n\nPlease share availability, customization options, and trial appointments.\n\nThank you!`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   }
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#fdf8f5]">
-        <div className="text-center">
-          <div className="w-12 h-12 border-2 border-rose-300 border-t-rose-600 rounded-full animate-spin mx-auto mb-5" />
-          <p className="text-gray-400 text-sm tracking-widest uppercase">Loading</p>
+        <div className="text-center p-8 bg-white rounded-3xl shadow-lg border border-rose-100/60">
+          <div className="w-12 h-12 border-3 border-rose-200 border-t-rose-600 rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-500 text-xs tracking-[0.3em] uppercase font-medium">Loading Creation...</p>
         </div>
       </div>
     );
@@ -39,141 +38,214 @@ function DressDetails() {
   if (!dress) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#fdf8f5] text-center px-6">
-        <p className="text-6xl mb-8">🌸</p>
-        <h1 className="text-4xl font-bold mb-5" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-          Dress Not Found
-        </h1>
-        <Link to="/collections" className="btn-glow mt-4 bg-rose-600 text-white px-10 py-4 text-sm tracking-widest uppercase hover:bg-rose-700 transition rounded-sm">
-          Back to Collections
-        </Link>
+        <div className="max-w-md bg-white p-10 rounded-3xl shadow-xl border border-rose-100">
+          <p className="text-5xl mb-4">🌸</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-3" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+            Piece Not Found
+          </h1>
+          <p className="text-gray-500 text-sm mb-6 font-light">
+            The dress you are looking for may have been archived or is no longer available.
+          </p>
+          <Link
+            to="/collections"
+            className="btn-glow inline-flex items-center justify-center bg-rose-700 hover:bg-rose-800 text-white px-8 py-3.5 text-xs tracking-widest uppercase font-medium rounded-full transition-all shadow-md"
+          >
+            Explore Collections
+          </Link>
+        </div>
       </div>
     );
   }
 
-  const details = [
-    { label: "Category", value: dress.category },
-    { label: "Fabric", value: dress.fabric },
-    { label: "Color", value: dress.color },
-    { label: "Size", value: dress.size },
-    { label: "Occasion", value: dress.occasion },
+  const specs = [
+    { label: "Category", value: dress.category, icon: FiTag },
+    { label: "Fabric", value: dress.fabric, icon: FiLayers },
+    { label: "Color Palette", value: dress.color, icon: FiDroplet },
+    { label: "Available Sizes", value: dress.size, icon: FiMaximize2 },
+    { label: "Occasion", value: dress.occasion, icon: FiCalendar },
   ].filter((d) => d.value);
 
   return (
-    <>
-      <div className="min-h-screen bg-[#fdf8f5] pt-32 pb-28">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
+    <div className="bg-[#fdf8f5] min-h-screen flex flex-col justify-between">
+      {/* Top Breadcrumb & Page Header */}
+      <div className="pt-28 md:pt-36 pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
 
-          {/* Breadcrumb */}
-          <Link
-            to="/collections"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-rose-600 text-sm tracking-wide transition-colors mb-14 group"
-          >
-            <FiArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
-            <span className="border-b border-transparent group-hover:border-rose-300 transition-colors duration-300">Back to Collections</span>
-          </Link>
+          {/* Navigation Bar */}
+          <div className="mb-8 flex items-center justify-between">
+            <Link
+              to="/collections"
+              className="inline-flex items-center gap-2.5 text-xs tracking-wider uppercase font-medium text-gray-500 hover:text-rose-700 transition-colors bg-white/80 hover:bg-white px-4 py-2 rounded-full border border-rose-100 shadow-xs group"
+            >
+              <FiArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
+              <span>Back to Collections</span>
+            </Link>
 
-          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+            <span className="text-[11px] tracking-[0.25em] uppercase text-rose-500 font-semibold hidden sm:inline-block">
+              Lee Trends Bespoke Studio
+            </span>
+          </div>
 
-            {/* Image */}
-            <div className="img-zoom relative bg-white shadow-xl rounded-sm overflow-hidden">
-              <img
-                src={dress.imageUrl}
-                alt={dress.name}
-                className="w-full aspect-[3/4] object-cover"
-              />
-              {dress.featured && (
-                <span className="absolute top-5 left-5 bg-rose-600 text-white text-[10px] tracking-widest uppercase px-4 py-1.5 rounded-sm shadow-md">
-                  Featured
-                </span>
-              )}
+          {/* Main Showcase Grid */}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+            {/* Left Column: Portrait Showcase Box */}
+            <div className="lg:col-span-6 xl:col-span-6">
+              <div className="bg-white p-3 sm:p-4 rounded-3xl shadow-xl shadow-rose-950/5 border border-rose-100/70 sticky top-28">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-rose-50/30 group">
+                  <img
+                    src={dress.imageUrl}
+                    alt={dress.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  
+                  {/* Floating Badges */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    {dress.featured && (
+                      <span className="bg-rose-700/90 backdrop-blur-md text-white text-[10px] tracking-[0.25em] uppercase font-semibold px-3 py-1.5 rounded-full shadow-md">
+                        Featured Piece
+                      </span>
+                    )}
+                    <span className={`text-[10px] tracking-[0.2em] uppercase font-semibold px-3 py-1.5 rounded-full shadow-md backdrop-blur-md ${
+                      dress.available
+                        ? "bg-white/95 text-emerald-700 border border-emerald-200/60"
+                        : "bg-white/95 text-red-600 border border-red-200/60"
+                    }`}>
+                      {dress.available ? "● In Stock" : "● Sold Out"}
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white/90 text-[10px] tracking-wider uppercase px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    Bespoke Tailoring
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Details */}
-            <div className="lg:sticky lg:top-28">
-              <p className="text-rose-400 text-xs tracking-[0.4em] uppercase mb-4">{dress.category}</p>
-              <h1
-                className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
-                style={{ fontFamily: "Cormorant Garamond, serif" }}
-              >
-                {dress.name}
-              </h1>
+            {/* Right Column: Structured Information Card */}
+            <div className="lg:col-span-6 xl:col-span-6 space-y-6">
 
-              <div className="flex items-center gap-5 mt-8">
-                <p className="text-3xl font-bold text-rose-600" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-                  ₹ {dress.price?.toLocaleString()}
-                </p>
-                <span
-                  className={`text-xs tracking-widest uppercase px-4 py-2 font-medium rounded-sm ${
-                    dress.available
-                      ? "bg-green-50 text-green-700 border border-green-200"
-                      : "bg-red-50 text-red-700 border border-red-200"
-                  }`}
-                >
-                  {dress.available ? "In Stock" : "Out of Stock"}
-                </span>
-              </div>
-
-              <div className="w-full h-px bg-gray-200 my-10" />
-
-              <div className="space-y-6">
-                {details.map((d, i) => (
-                  <div key={i} className="flex items-start gap-6">
-                    <span className="text-xs tracking-[0.3em] uppercase text-gray-400 w-24 shrink-0 pt-0.5">
-                      {d.label}
-                    </span>
-                    <span className="text-gray-800 text-sm font-medium">{d.value}</span>
+              {/* Header & Pricing Box */}
+              <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-xl shadow-rose-950/5 border border-rose-100/70 space-y-6">
+                
+                <div>
+                  <div className="inline-block px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200/60 text-[11px] tracking-[0.25em] uppercase font-semibold rounded-full mb-3">
+                    {dress.category || "Designer Collection"}
                   </div>
-                ))}
-              </div>
-
-              {dress.description && (
-                <>
-                  <div className="w-full h-px bg-gray-200 my-10" />
-                  <h2
-                    className="text-2xl font-semibold text-gray-900 mb-5"
+                  <h1
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-wide"
                     style={{ fontFamily: "Cormorant Garamond, serif" }}
                   >
-                    About this piece
-                  </h2>
-                  <p className="text-gray-500 leading-9 text-sm">{dress.description}</p>
-                </>
-              )}
+                    {dress.name}
+                  </h1>
+                </div>
 
-              <div className="flex flex-wrap gap-4 mt-14">
-                <button
-                  onClick={bookNow}
-                  className="btn-glow-green flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 rounded-sm"
-                >
-                  <FaWhatsapp size={16} />
-                  Book on WhatsApp
-                </button>
-                <Link
-                  to="/collections"
-                  className="btn-glow border border-rose-300 text-rose-600 hover:bg-rose-600 hover:text-white px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 rounded-sm"
-                >
-                  More Collections
-                </Link>
-              </div>
-
-              <div className="mt-14 grid grid-cols-3 gap-6 border-t border-gray-100 pt-10">
-                {[
-                  { icon: "✦", label: "Premium Fabric" },
-                  { icon: "✦", label: "Custom Fit" },
-                  { icon: "✦", label: "Fast Delivery" },
-                ].map((b, i) => (
-                  <div key={i} className="text-center group">
-                    <p className="text-rose-500 text-xl mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">{b.icon}</p>
-                    <p className="text-gray-500 text-xs tracking-wide">{b.label}</p>
+                {/* Price & Stock Pill */}
+                <div className="flex flex-wrap items-baseline gap-4 p-4 bg-gradient-to-r from-rose-50/70 via-rose-50/30 to-transparent rounded-2xl border border-rose-100/80">
+                  <div className="text-3xl sm:text-4xl font-bold text-rose-800" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                    ₹ {dress.price?.toLocaleString()}
                   </div>
-                ))}
+                  <span className="text-xs text-gray-500 font-light tracking-wide">
+                    (Inclusive of custom measurements & trials)
+                  </span>
+                </div>
+
+                {/* Structured Specifications Grid */}
+                <div>
+                  <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-4">
+                    Garment Specifications
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {specs.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-3.5 p-3.5 rounded-xl bg-gray-50/70 border border-gray-150 hover:bg-rose-50/30 hover:border-rose-200/60 transition-all duration-200"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-white text-rose-600 flex items-center justify-center shrink-0 shadow-xs border border-rose-100/50">
+                          <item.icon size={14} />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-medium">
+                            {item.label}
+                          </p>
+                          <p className="text-sm font-semibold text-gray-800 truncate">
+                            {item.value}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Description Box */}
+                {dress.description && (
+                  <div className="pt-4 border-t border-gray-100">
+                    <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-2.5">
+                      Design Notes & Artistry
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed font-light">
+                      {dress.description}
+                    </p>
+                  </div>
+                )}
+
+                {/* Call To Action Buttons Box */}
+                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3.5">
+                  <button
+                    onClick={bookNow}
+                    className="flex-1 btn-glow-green inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold shadow-lg shadow-emerald-600/20 transition-all duration-300 cursor-pointer"
+                  >
+                    <FaWhatsapp size={18} />
+                    <span>Book on WhatsApp</span>
+                  </button>
+
+                  <Link
+                    to="/collections"
+                    className="inline-flex items-center justify-center bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200/80 py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 text-center"
+                  >
+                    More Collections
+                  </Link>
+                </div>
               </div>
+
+              {/* Trust Badges Card */}
+              <div className="bg-white p-6 rounded-3xl shadow-md shadow-rose-950/5 border border-rose-100/70">
+                <div className="grid grid-cols-3 gap-4 text-center divide-x divide-gray-100">
+                  <div className="px-2">
+                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs">
+                      <FaGem size={16} />
+                    </div>
+                    <p className="text-xs font-semibold text-gray-800">Premium Fabrics</p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">Pure silks & brocades</p>
+                  </div>
+
+                  <div className="px-2">
+                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs">
+                      <FaRulerCombined size={16} />
+                    </div>
+                    <p className="text-xs font-semibold text-gray-800">Perfect Fit</p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">Tailored to precision</p>
+                  </div>
+
+                  <div className="px-2">
+                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs">
+                      <FaShippingFast size={16} />
+                    </div>
+                    <p className="text-xs font-semibold text-gray-800">On-Time Handover</p>
+                    <p className="text-[10px] text-gray-400 mt-0.5">Prior to your event</p>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
           </div>
+
         </div>
       </div>
+
       <Footer />
-    </>
+    </div>
   );
 }
 

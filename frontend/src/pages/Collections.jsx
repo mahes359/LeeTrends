@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getAllDresses } from "../services/dressService";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiArrowRight } from "react-icons/fi";
 
 const CATEGORIES = ["All", "Bridal", "Party Wear", "Ethnic", "Kids Wear"];
 
@@ -27,81 +27,107 @@ function Collections() {
   }, [search, category, dresses]);
 
   return (
-    <>
-      {/* Page Header */}
-      <div className="pt-44 pb-20 bg-[#fdf8f5] text-center px-6">
-        <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-4 font-medium">Browse</p>
-        <h1
-          className="text-6xl md:text-7xl font-bold text-gray-900"
-          style={{ fontFamily: "Cormorant Garamond, serif" }}
-        >
-          Our Collections
-        </h1>
-        <div className="flex items-center justify-center gap-3 mt-8">
-          <div className="w-8 h-px bg-rose-300" />
-          <div className="w-2 h-2 rounded-full bg-rose-400" />
-          <div className="w-8 h-px bg-rose-300" />
+    <div className="bg-[#fdf8f5] min-h-screen flex flex-col justify-between">
+      <div>
+        {/* Page Header */}
+        <div className="pt-32 sm:pt-40 pb-16 text-center px-6">
+          <span className="inline-block px-3.5 py-1 bg-rose-100/70 text-rose-700 border border-rose-200/60 text-[10px] tracking-[0.3em] uppercase font-semibold rounded-full mb-3">
+            Portfolio
+          </span>
+          <h1
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 tracking-wide"
+            style={{ fontFamily: "Cormorant Garamond, serif" }}
+          >
+            Our Collections
+          </h1>
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <div className="w-10 h-px bg-rose-200" />
+            <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+            <div className="w-10 h-px bg-rose-200" />
+          </div>
+          <p className="text-gray-500 text-sm mt-3 font-light max-w-md mx-auto">
+            Explore handcrafted bridal wear, festive lehengas, gowns, and bespoke couture.
+          </p>
         </div>
-      </div>
 
-      <div className="bg-[#fdf8f5] pb-28 md:pb-40 px-6">
-        <div className="max-w-7xl mx-auto px-0 md:px-10">
+        {/* Content Container */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pb-24 md:pb-36">
 
-          {/* Filters */}
-          <div className="flex flex-col md:flex-row gap-5 items-center justify-between mb-14">
-            <div className="flex flex-wrap gap-3">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setCategory(cat)}
-                  className={`px-6 py-2.5 text-xs tracking-widest uppercase border rounded-sm transition-all duration-300 ${
-                    category === cat
-                      ? "bg-rose-600 border-rose-600 text-white shadow-md shadow-rose-600/20"
-                      : "border-gray-300 text-gray-600 hover:border-rose-400 hover:text-rose-600"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+          {/* Filter & Search Bar Box */}
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 sm:p-5 border border-rose-100/80 shadow-xs mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* Category Pills */}
+            <div className="flex flex-wrap gap-2 justify-center sm:justify-start w-full md:w-auto">
+              {CATEGORIES.map((cat) => {
+                const isActive = category === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setCategory(cat)}
+                    className={`px-5 py-2.5 text-xs tracking-wider uppercase font-semibold rounded-full transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? "bg-rose-700 text-white shadow-md shadow-rose-900/20"
+                        : "bg-gray-50 text-gray-600 hover:bg-rose-50 hover:text-rose-700 border border-gray-150"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
             </div>
 
-            <div className="relative w-full md:w-80">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            {/* Search Input Box */}
+            <div className="relative w-full md:w-72">
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
               <input
-                className="w-full border border-gray-200 bg-white pl-12 pr-4 py-3.5 text-sm rounded-sm focus:outline-none focus:border-rose-400 focus:shadow-sm focus:shadow-rose-100 transition-all duration-300"
-                placeholder="Search dresses..."
+                className="w-full border border-gray-200 bg-gray-50/70 pl-11 pr-4 py-2.5 text-sm rounded-full placeholder-gray-400 focus:outline-none focus:border-rose-400 focus:bg-white focus:ring-2 focus:ring-rose-100 transition-all duration-300"
+                placeholder="Search collection..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
           </div>
 
-          {/* Results count */}
+          {/* Results count label */}
           {!loading && (
-            <p className="text-gray-400 text-sm mb-10 tracking-wide">
-              {filtered.length} {filtered.length === 1 ? "piece" : "pieces"} found
-            </p>
+            <div className="flex items-center justify-between px-2 mb-8 text-xs tracking-wider uppercase text-gray-400 font-medium">
+              <span>Showing {filtered.length} {filtered.length === 1 ? "Creation" : "Creations"}</span>
+              {category !== "All" && (
+                <button
+                  onClick={() => { setCategory("All"); setSearch(""); }}
+                  className="text-rose-600 hover:underline"
+                >
+                  Reset filter
+                </button>
+              )}
+            </div>
           )}
 
-          {/* Grid */}
+          {/* Product Grid with Luxury Boxing */}
           {loading ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i}>
-                  <div className="skeleton-shimmer aspect-[3/4] w-full rounded-sm" />
-                  <div className="mt-5 h-3 skeleton-shimmer w-1/3 rounded" />
-                  <div className="mt-3 h-5 skeleton-shimmer w-2/3 rounded" />
-                  <div className="mt-2 h-4 skeleton-shimmer w-1/4 rounded" />
+                <div key={i} className="bg-white rounded-3xl p-3.5 border border-gray-100 space-y-3">
+                  <div className="skeleton-shimmer aspect-[3/4] w-full rounded-2xl" />
+                  <div className="p-2 space-y-2">
+                    <div className="h-3 skeleton-shimmer w-1/3 rounded-full" />
+                    <div className="h-5 skeleton-shimmer w-3/4 rounded-full" />
+                    <div className="h-4 skeleton-shimmer w-1/4 rounded-full pt-2" />
+                  </div>
                 </div>
               ))}
             </div>
           ) : filtered.length === 0 ? (
-            <div className="text-center py-32">
-              <p className="text-5xl mb-6">🌸</p>
-              <p className="text-gray-400 text-lg">No dresses found for your search.</p>
+            <div className="bg-white rounded-3xl p-16 text-center border border-rose-100/60 shadow-xs max-w-lg mx-auto">
+              <p className="text-5xl mb-4">🌸</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                No Pieces Found
+              </h3>
+              <p className="text-gray-500 text-sm mb-6 font-light">
+                We couldn't find any designs matching "{search}". Try searching for another style or reset your filters.
+              </p>
               <button
                 onClick={() => { setSearch(""); setCategory("All"); }}
-                className="mt-8 text-rose-600 text-sm tracking-widest uppercase border-b border-rose-300 hover:border-rose-600 transition-colors pb-1"
+                className="btn-glow px-6 py-2.5 rounded-full bg-rose-700 text-white text-xs tracking-widest uppercase font-semibold shadow-md"
               >
                 Clear Filters
               </button>
@@ -109,35 +135,64 @@ function Collections() {
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {filtered.map((dress) => (
-                <Link to={`/dress/${dress.id}`} key={dress.id} className="group block">
-                  <div className="relative overflow-hidden bg-white shadow-sm rounded-sm hover:shadow-xl transition-shadow duration-500">
-                    <div className="overflow-hidden aspect-[3/4]">
-                      <img
-                        src={dress.imageUrl}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        alt={dress.name}
-                      />
+                <Link
+                  to={`/dress/${dress.id}`}
+                  key={dress.id}
+                  className="bg-white rounded-3xl p-3.5 border border-rose-100/70 shadow-xs hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-400 flex flex-col justify-between group"
+                >
+                  {/* Image Box */}
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-50 mb-4">
+                    <img
+                      src={dress.imageUrl}
+                      className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
+                      alt={dress.name}
+                    />
+
+                    {/* Status Badges */}
+                    <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                      {dress.featured && (
+                        <span className="bg-rose-700 text-white text-[9px] tracking-[0.25em] uppercase font-semibold px-2.5 py-1 rounded-full shadow-xs">
+                          Featured
+                        </span>
+                      )}
+                      {!dress.available && (
+                        <span className="bg-gray-900/90 text-white text-[9px] tracking-[0.2em] uppercase font-semibold px-2.5 py-1 rounded-full backdrop-blur-xs">
+                          Sold Out
+                        </span>
+                      )}
                     </div>
-                    {!dress.available && (
-                      <span className="absolute top-4 left-4 bg-gray-800 text-white text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-sm">
-                        Sold Out
-                      </span>
-                    )}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-all duration-400 flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100">
-                      <span className="bg-white text-gray-900 text-xs tracking-widest uppercase px-8 py-3 shadow-lg rounded-sm hover:bg-rose-600 hover:text-white transition-colors">
+
+                    {/* Hover Overlay Button */}
+                    <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                      <span className="bg-white/95 backdrop-blur-sm text-gray-900 text-[11px] tracking-widest uppercase font-semibold px-5 py-2.5 rounded-full shadow-lg">
                         View Details
                       </span>
                     </div>
                   </div>
-                  <div className="pt-6">
-                    <p className="text-rose-400 text-[10px] tracking-[0.3em] uppercase mb-2">{dress.category}</p>
-                    <h2
-                      className="text-gray-900 text-xl font-semibold group-hover:text-rose-700 transition-colors duration-300"
-                      style={{ fontFamily: "Cormorant Garamond, serif" }}
-                    >
-                      {dress.name}
-                    </h2>
-                    <p className="text-rose-600 font-semibold mt-2.5 text-sm">₹ {dress.price?.toLocaleString()}</p>
+
+                  {/* Info Box */}
+                  <div className="p-3 pt-0 flex flex-col justify-between flex-1">
+                    <div>
+                      <span className="text-rose-500 text-[10px] tracking-[0.25em] uppercase font-semibold">
+                        {dress.category}
+                      </span>
+                      <h2
+                        className="text-gray-900 text-xl font-bold mt-1 line-clamp-1 group-hover:text-rose-700 transition-colors"
+                        style={{ fontFamily: "Cormorant Garamond, serif" }}
+                      >
+                        {dress.name}
+                      </h2>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                      <p className="text-rose-700 font-bold text-base">
+                        ₹ {dress.price?.toLocaleString()}
+                      </p>
+                      <span className="text-[11px] tracking-wider uppercase font-medium text-gray-400 group-hover:text-rose-600 transition-colors flex items-center gap-1">
+                        <span>Details</span>
+                        <FiArrowRight size={12} />
+                      </span>
+                    </div>
                   </div>
                 </Link>
               ))}
@@ -146,8 +201,9 @@ function Collections() {
 
         </div>
       </div>
+
       <Footer />
-    </>
+    </div>
   );
 }
 

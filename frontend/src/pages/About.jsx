@@ -1,117 +1,194 @@
 import Footer from "../components/Footer/Footer";
 import hero from "../assets/images/hero.jpg";
 import bridal1 from "../assets/images/bridal1.jpg";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaGem, FaHeart, FaStar, FaClock } from "react-icons/fa";
 import config from "../config";
 
 const stats = [
-  { num: "500+", label: "Happy Clients" },
+  { num: "500+", label: "Happy Brides & Clients" },
   { num: "8+", label: "Years Experience" },
-  { num: "1000+", label: "Designs Created" },
-  { num: "4.9★", label: "Customer Rating" },
+  { num: "1000+", label: "Couture Designs" },
+  { num: "4.9★", label: "Client Rating" },
 ];
 
 const values = [
-  { title: "Premium Quality", desc: "We source only the finest fabrics — silks, georgettes, and handloom weaves." },
-  { title: "Custom Fit", desc: "Every piece is tailored to your exact measurements for a perfect silhouette." },
-  { title: "Personal Service", desc: "One-on-one styling consultations to bring your vision to life." },
-  { title: "Timely Delivery", desc: "We respect your timeline and deliver every order on schedule." },
+  {
+    icon: FaGem,
+    title: "Premium Fabrics",
+    desc: "We curate authentic Banarasi silks, pure raw silks, organza, and artisanal brocades.",
+  },
+  {
+    icon: FaHeart,
+    title: "Flawless Custom Fit",
+    desc: "Every silhouette is measured and constructed with multiple trials to ensure pure comfort.",
+  },
+  {
+    icon: FaStar,
+    title: "Bespoke Styling",
+    desc: "Personalized consultations to align embroidery motifs, cuts, and color schemes with your vision.",
+  },
+  {
+    icon: FaClock,
+    title: "Committed Delivery",
+    desc: "Strict timelines to ensure your wedding ensembles are ready comfortably ahead of your events.",
+  },
 ];
 
 function About() {
   return (
-    <>
-      {/* Hero Banner */}
-      <div className="relative h-[65vh] overflow-hidden">
-        <img src={hero} alt="About" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/30 flex items-center">
-          <div className="max-w-7xl mx-auto px-8 md:px-16">
-            <p className="text-rose-300 text-xs tracking-[0.5em] uppercase mb-5 font-medium">Our Story</p>
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight drop-shadow-lg" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              About {config.businessName}
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats Bar */}
-      <div className="bg-gradient-to-r from-rose-700 via-rose-600 to-rose-700 py-16 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)" }} />
-        <div className="max-w-7xl mx-auto px-6 md:px-16 grid grid-cols-2 md:grid-cols-4 gap-10 text-center text-white relative z-10">
-          {stats.map((s, i) => (
-            <div key={i} className="flex flex-col items-center group">
-              <p className="text-4xl md:text-6xl font-bold group-hover:scale-105 transition-transform duration-300" style={{ fontFamily: "Cormorant Garamond, serif" }}>{s.num}</p>
-              <div className="w-8 h-px bg-rose-300/70 my-4 group-hover:w-12 transition-all duration-300" />
-              <p className="text-rose-200 text-xs tracking-[0.3em] uppercase">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Who We Are */}
-      <section className="py-28 md:py-40 bg-[#fdf8f5]">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-          <div>
-            <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-5 font-medium">Who We Are</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-10" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              Crafting elegance for every special moment
-            </h2>
-            <p className="text-gray-500 leading-9 text-sm mb-6">
-              {config.businessName} is a boutique fashion studio based in {config.address}, known for designer collections that blend timeless charm with modern styling. From bridal wear to festive ensembles, every piece is curated to make celebrations feel unforgettable.
-            </p>
-            <p className="text-gray-500 leading-9 text-sm mb-12">
-              Our team focuses on premium fabrics, flattering silhouettes, and personalized service so every customer feels confident and beautifully dressed for their most important moments.
-            </p>
-            <a href={config.whatsappLink} target="_blank" rel="noreferrer"
-              className="btn-glow-green inline-flex items-center gap-3 bg-green-600 text-white px-10 py-4 text-sm tracking-widest uppercase hover:bg-green-700 transition-all duration-300 rounded-sm">
-              <FaWhatsapp size={16} /> Chat With Us
-            </a>
-          </div>
-
-          <div className="relative">
-            <div className="img-zoom rounded-sm overflow-hidden shadow-2xl">
-              <img src={bridal1} alt="Our Work" className="w-full aspect-[4/5] object-cover" />
-            </div>
-            <div className="absolute -bottom-8 -left-8 bg-gradient-to-br from-rose-700 to-rose-800 text-white p-10 hidden md:block rounded-sm shadow-xl">
-              <p className="text-5xl font-bold" style={{ fontFamily: "Cormorant Garamond, serif" }}>8+</p>
-              <div className="w-8 h-px bg-rose-300/60 my-3" />
-              <p className="text-rose-200 text-xs tracking-widest uppercase">Years of Excellence</p>
+    <div className="bg-[#fdf8f5] min-h-screen flex flex-col justify-between">
+      <div>
+        {/* Hero Banner */}
+        <div className="relative h-[60vh] min-h-[460px] overflow-hidden bg-gray-950">
+          <img src={hero} alt="About Lee Trends" className="w-full h-full object-cover opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent flex items-center">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full pt-16">
+              <span className="inline-block px-3.5 py-1 bg-rose-500/20 backdrop-blur-md border border-rose-400/30 text-rose-200 text-[10px] tracking-[0.35em] uppercase font-semibold rounded-full mb-4">
+                Our Heritage & Artistry
+              </span>
+              <h1
+                className="text-4xl sm:text-6xl md:text-7xl font-bold text-white leading-tight drop-shadow-lg tracking-wide"
+                style={{ fontFamily: "Cormorant Garamond, serif" }}
+              >
+                About {config.businessName}
+              </h1>
+              <p className="text-gray-200 text-sm sm:text-base max-w-xl mt-4 font-light leading-relaxed">
+                Celebrating South Indian bridal traditions, handloom elegance, and modern designer silhouettes since 2017.
+              </p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Values */}
-      <section className="py-28 md:py-40 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <div className="text-center mb-18 md:mb-28">
-            <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-4 font-medium">Our Values</p>
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-              Why Clients Love Us
-            </h2>
-            <div className="flex items-center justify-center gap-3 mt-8">
-              <div className="w-8 h-px bg-rose-300" />
-              <div className="w-2 h-2 rounded-full bg-rose-400" />
-              <div className="w-8 h-px bg-rose-300" />
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {values.map((v, i) => (
-              <div key={i} className="border border-rose-100/80 rounded-sm p-10 hover:border-rose-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-400 group overflow-hidden relative">
-                <div className="w-12 h-12 bg-rose-50 group-hover:bg-rose-100 rounded-lg flex items-center justify-center mb-7 transition-all duration-300 group-hover:scale-105">
-                  <span className="text-rose-600 font-bold text-sm">0{i + 1}</span>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: "Cormorant Garamond, serif" }}>{v.title}</h3>
-                <p className="text-gray-500 text-sm leading-8">{v.desc}</p>
-                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-rose-400 to-rose-600 group-hover:w-full transition-all duration-500" />
+        {/* Stats Strip */}
+        <div className="bg-gradient-to-r from-rose-800 via-rose-700 to-rose-900 py-16 px-6 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                className="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 text-center text-white flex flex-col items-center justify-center hover:bg-white/15 transition-all duration-300"
+              >
+                <p
+                  className="text-4xl sm:text-5xl font-bold leading-none"
+                  style={{ fontFamily: "Cormorant Garamond, serif" }}
+                >
+                  {s.num}
+                </p>
+                <div className="w-8 h-0.5 bg-rose-300/80 my-3 rounded-full" />
+                <p className="text-rose-100 text-[11px] tracking-[0.25em] uppercase font-medium">
+                  {s.label}
+                </p>
               </div>
             ))}
           </div>
         </div>
-      </section>
+
+        {/* Who We Are Story */}
+        <section className="py-24 md:py-32 bg-[#fdf8f5]">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-6 space-y-6">
+              <span className="inline-block px-3.5 py-1 bg-rose-100/70 text-rose-700 border border-rose-200/60 text-[10px] tracking-[0.3em] uppercase font-semibold rounded-full">
+                The Lee Trends Story
+              </span>
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
+                style={{ fontFamily: "Cormorant Garamond, serif" }}
+              >
+                Crafting Elegance for Life's Most Treasured Moments
+              </h2>
+              <p className="text-gray-600 leading-relaxed text-sm font-light">
+                {config.businessName} is a premier bespoke boutique nestled in {config.address}, celebrated for our passion in turning bridal dreams into timeless heirlooms. We combine age-old hand-embroidery techniques like Zardozi, Aari, and Maggam with contemporary tailoring sensibilities.
+              </p>
+              <p className="text-gray-600 leading-relaxed text-sm font-light">
+                Whether creating a grand wedding lehenga, an ornate muhurtham blouse, or an evening party gown, our dedicated master tailors ensure every cut flatters your form and tells your unique story.
+              </p>
+
+              <div className="pt-2">
+                <a
+                  href={config.whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-glow-green inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white px-8 py-4 rounded-full text-xs tracking-[0.2em] uppercase font-semibold shadow-xl transition-all duration-300"
+                >
+                  <FaWhatsapp size={17} />
+                  <span>Connect With Our Designers</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Right Image Box */}
+            <div className="lg:col-span-6 relative">
+              <div className="bg-white p-3 sm:p-4 rounded-3xl shadow-xl border border-rose-100/70">
+                <div className="rounded-2xl overflow-hidden aspect-[4/5] bg-gray-100">
+                  <img src={bridal1} alt="Lee Trends Studio Work" className="w-full h-full object-cover" />
+                </div>
+              </div>
+
+              {/* Experience Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-rose-800 to-rose-900 text-white p-6 sm:p-8 rounded-3xl shadow-2xl border border-rose-400/30 hidden sm:block">
+                <p className="text-4xl font-bold leading-none" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                  8+ Years
+                </p>
+                <div className="w-8 h-0.5 bg-rose-300 my-2.5 rounded-full" />
+                <p className="text-rose-100 text-[10px] tracking-[0.25em] uppercase font-semibold">
+                  Boutique Mastery
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Core Values Grid */}
+        <section className="py-24 md:py-32 bg-white border-t border-rose-100/60">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+            <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+              <span className="inline-block px-3.5 py-1 bg-rose-50 text-rose-700 border border-rose-200/60 text-[10px] tracking-[0.3em] uppercase font-semibold rounded-full mb-3">
+                Our Standards
+              </span>
+              <h2
+                className="text-4xl md:text-5xl font-bold text-gray-900 tracking-wide"
+                style={{ fontFamily: "Cormorant Garamond, serif" }}
+              >
+                Why Patrons Trust Us
+              </h2>
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <div className="w-10 h-px bg-rose-200" />
+                <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                <div className="w-10 h-px bg-rose-200" />
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {values.map((v, i) => (
+                <div
+                  key={i}
+                  className="bg-[#fdf8f5] rounded-3xl p-8 border border-rose-100/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-white text-rose-700 flex items-center justify-center shadow-xs border border-rose-100 mb-6 group-hover:scale-105 transition-transform">
+                      <v.icon size={20} />
+                    </div>
+                    <h3
+                      className="text-2xl font-bold text-gray-900 mb-3"
+                      style={{ fontFamily: "Cormorant Garamond, serif" }}
+                    >
+                      {v.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed font-light">
+                      {v.desc}
+                    </p>
+                  </div>
+                  <div className="pt-6 mt-6 border-t border-rose-200/40 text-rose-600 text-xs font-semibold tracking-wider uppercase">
+                    Guaranteed
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
