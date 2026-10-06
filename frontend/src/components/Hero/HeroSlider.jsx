@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
 import config from "../../config";
 
 import "swiper/css";
@@ -47,6 +48,10 @@ function HeroSlider() {
         ))}
       </Swiper>
 
+      {/* Decorative sparkles */}
+      <div className="absolute top-1/4 right-1/4 w-1 h-1 bg-white/30 rounded-full z-10 hidden lg:block" style={{ animation: "float404 3s ease-in-out infinite" }} />
+      <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-white/20 rounded-full z-10 hidden lg:block" style={{ animation: "float404 4s ease-in-out infinite 1s" }} />
+
       <div className="absolute inset-0 z-10 flex items-center pointer-events-none">
         <div className="max-w-7xl mx-auto px-8 md:px-16 w-full">
           <AnimatePresence mode="wait">
@@ -57,22 +62,22 @@ function HeroSlider() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <p className="text-rose-300 text-xs md:text-sm tracking-[0.4em] uppercase mb-4 font-medium">
+              <p className="text-rose-300 text-xs md:text-sm tracking-[0.4em] uppercase mb-5 font-medium">
                 {slides[activeIndex].tag}
               </p>
               <h1
-                className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-6 whitespace-pre-line"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-7 whitespace-pre-line drop-shadow-lg"
                 style={{ fontFamily: "Cormorant Garamond, serif" }}
               >
                 {slides[activeIndex].title}
               </h1>
-              <p className="text-gray-300 text-base md:text-xl mb-10 max-w-lg font-light tracking-wide">
+              <p className="text-gray-300 text-base md:text-xl mb-12 max-w-lg font-light tracking-wide">
                 {slides[activeIndex].subtitle}
               </p>
-              <div className="flex flex-wrap gap-4 pointer-events-auto">
+              <div className="flex flex-wrap gap-5 pointer-events-auto">
                 <a
                   href="/collections"
-                  className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:shadow-lg hover:shadow-rose-600/30"
+                  className="btn-glow bg-rose-600 hover:bg-rose-700 text-white px-9 py-4 text-sm tracking-widest uppercase transition-all duration-300"
                 >
                   Explore Collection
                 </a>
@@ -80,7 +85,7 @@ function HeroSlider() {
                   href={config.whatsappLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="border border-white/60 text-white hover:bg-white hover:text-rose-700 px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300 backdrop-blur-sm"
+                  className="border border-white/50 text-white hover:bg-white hover:text-rose-700 px-9 py-4 text-sm tracking-widest uppercase transition-all duration-300 backdrop-blur-sm hover:shadow-lg"
                 >
                   Book Now
                 </a>
@@ -90,11 +95,18 @@ function HeroSlider() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 right-10 z-10 text-white/60 text-sm tracking-widest hidden md:block">
+      {/* Slide counter */}
+      <div className="absolute bottom-12 right-10 z-10 text-white/60 text-sm tracking-widest hidden md:block">
         <span className="text-white text-2xl font-light" style={{ fontFamily: "Cormorant Garamond, serif" }}>
           0{activeIndex + 1}
         </span>
         {" / "}0{slides.length}
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 scroll-indicator pointer-events-none">
+        <span className="text-white/50 text-[10px] tracking-[0.4em] uppercase">Scroll</span>
+        <FiChevronDown className="text-white/50" size={18} />
       </div>
     </div>
   );

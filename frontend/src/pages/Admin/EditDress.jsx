@@ -3,10 +3,10 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import API from "../../services/api";
 import AdminLayout from "../../components/AdminLayout/AdminLayout";
-import { FiUploadCloud, FiArrowLeft, FiX } from "react-icons/fi";
+import { FiUploadCloud, FiArrowLeft } from "react-icons/fi";
 
-const inputCls = "w-full border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-rose-400 transition-colors";
-const labelCls = "text-xs tracking-[0.3em] uppercase text-gray-400 block mb-2";
+const inputCls = "w-full border border-gray-200 bg-gray-50/50 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-rose-400 focus:bg-white focus:ring-2 focus:ring-rose-100 transition-all";
+const labelCls = "text-xs tracking-[0.25em] uppercase text-gray-500 block mb-2 font-medium";
 
 function EditDress() {
   const { id } = useParams();
@@ -25,9 +25,11 @@ function EditDress() {
     API.get(`/dresses/${id}`)
       .then((res) => {
         const d = res.data;
-        setForm({ name: d.name, category: d.category, price: d.price, description: d.description || "",
+        setForm({
+          name: d.name, category: d.category, price: d.price, description: d.description || "",
           fabric: d.fabric || "", color: d.color || "", size: d.size || "", occasion: d.occasion || "",
-          featured: d.featured, available: d.available });
+          featured: d.featured, available: d.available
+        });
         setPreview(d.imageUrl);
       })
       .catch(() => toast.error("Failed to load dress"))
@@ -73,141 +75,146 @@ function EditDress() {
 
   return (
     <AdminLayout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50/60 pb-12">
 
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-8 py-5 flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-bold text-gray-900" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-            Edit Dress
-          </h1>
-          <p className="text-gray-400 text-xs mt-0.5">Update dress details and image</p>
+        {/* Header */}
+        <div className="bg-white border-b border-gray-200/80 px-6 sm:px-8 py-5 flex items-center justify-between shadow-xs">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+              Edit Dress
+            </h1>
+            <p className="text-gray-400 text-xs mt-0.5 tracking-wide">Update details and imagery for this design</p>
+          </div>
+          <Link
+            to="/admin"
+            className="inline-flex items-center gap-2 text-xs tracking-wider uppercase text-gray-500 hover:text-rose-600 transition-colors py-2 px-3 rounded-lg hover:bg-gray-100"
+          >
+            <FiArrowLeft size={14} />
+            Back to Dashboard
+          </Link>
         </div>
-        <Link
-          to="/admin"
-          className="flex items-center gap-2 text-sm text-gray-500 hover:text-rose-600 transition-colors"
-        >
-          <FiArrowLeft size={14} />
-          Back to Dashboard
-        </Link>
-      </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-10">
-        <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-8">
+        <div className="max-w-5xl mx-auto px-6 py-8">
+          <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-8">
 
-          {/* Image */}
-          <div className="lg:col-span-1">
-            <p className={labelCls}>Dress Image</p>
-            <div className="relative group">
-              {preview ? (
-                <>
-                  <img src={preview} alt="Preview" className="w-full aspect-[3/4] object-cover" />
-                  <label className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center cursor-pointer">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity text-center text-white">
-                      <FiUploadCloud size={28} className="mx-auto mb-2" />
-                      <p className="text-xs tracking-widest uppercase">Change Image</p>
-                    </div>
-                    <input type="file" accept="image/*" className="hidden" onChange={handleImage} />
-                  </label>
-                </>
-              ) : (
-                <label className="flex flex-col items-center justify-center aspect-[3/4] border-2 border-dashed border-gray-200 hover:border-rose-400 cursor-pointer transition-colors bg-white">
-                  <FiUploadCloud className="text-gray-300 mb-3" size={40} />
-                  <p className="text-gray-400 text-sm">Click to upload</p>
-                  <input type="file" accept="image/*" className="hidden" onChange={handleImage} />
-                </label>
-              )}
-            </div>
-            <p className="text-gray-400 text-xs mt-2 text-center">Hover image to change</p>
-          </div>
-
-          {/* Fields */}
-          <div className="lg:col-span-2 space-y-5">
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelCls}>Dress Name *</label>
-                <input name="name" value={form.name} className={inputCls} onChange={handleChange} required />
-              </div>
-              <div>
-                <label className={labelCls}>Category *</label>
-                <select name="category" value={form.category} className={inputCls} onChange={handleChange} required>
-                  {["Bridal", "Party Wear", "Ethnic", "Kids Wear"].map((c) => <option key={c}>{c}</option>)}
-                </select>
+            {/* Image */}
+            <div className="lg:col-span-1">
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-xs sticky top-24">
+                <p className={labelCls}>Dress Portrait</p>
+                <div className="relative group rounded-xl overflow-hidden shadow-xs">
+                  {preview ? (
+                    <>
+                      <img src={preview} alt="Preview" className="w-full aspect-[3/4] object-cover" />
+                      <label className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center cursor-pointer">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity text-center text-white p-4">
+                          <FiUploadCloud size={30} className="mx-auto mb-2 text-rose-300" />
+                          <p className="text-xs tracking-widest uppercase font-semibold">Change Portrait</p>
+                          <p className="text-[10px] text-gray-300 mt-1">Click to select file</p>
+                        </div>
+                        <input type="file" accept="image/*" className="hidden" onChange={handleImage} />
+                      </label>
+                    </>
+                  ) : (
+                    <label className="flex flex-col items-center justify-center aspect-[3/4] border-2 border-dashed border-gray-200 hover:border-rose-400 rounded-xl cursor-pointer transition-colors bg-gray-50/50 p-6 text-center">
+                      <FiUploadCloud className="text-gray-300 mb-3" size={40} />
+                      <p className="text-gray-500 text-sm font-medium">Click to upload</p>
+                      <input type="file" accept="image/*" className="hidden" onChange={handleImage} />
+                    </label>
+                  )}
+                </div>
+                <p className="text-gray-400 text-xs mt-3 text-center">Hover portrait to replace image</p>
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelCls}>Price (₹) *</label>
-                <input type="number" name="price" value={form.price} className={inputCls} onChange={handleChange} required />
-              </div>
-              <div>
-                <label className={labelCls}>Occasion</label>
-                <input name="occasion" value={form.occasion} className={inputCls} onChange={handleChange} />
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label className={labelCls}>Fabric</label>
-                <input name="fabric" value={form.fabric} className={inputCls} onChange={handleChange} />
-              </div>
-              <div>
-                <label className={labelCls}>Color</label>
-                <input name="color" value={form.color} className={inputCls} onChange={handleChange} />
-              </div>
-            </div>
-
-            <div>
-              <label className={labelCls}>Size</label>
-              <input name="size" value={form.size} className={inputCls} onChange={handleChange} />
-            </div>
-
-            <div>
-              <label className={labelCls}>Description</label>
-              <textarea
-                name="description"
-                value={form.description}
-                rows={4}
-                className={inputCls + " resize-none"}
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* Toggles */}
-            <div className="flex gap-8 pt-2">
-              {[
-                { name: "featured", label: "Mark as Featured", checked: form.featured },
-                { name: "available", label: "Available for Booking", checked: form.available },
-              ].map((t) => (
-                <label key={t.name} className="flex items-center gap-3 cursor-pointer">
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      name={t.name}
-                      checked={t.checked}
-                      onChange={handleChange}
-                      className="sr-only peer"
-                    />
-                    <div className="w-10 h-5 bg-gray-200 peer-checked:bg-rose-600 transition-colors rounded-full" />
-                    <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform" />
+            {/* Fields */}
+            <div className="lg:col-span-2">
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className={labelCls}>Dress Name *</label>
+                    <input name="name" value={form.name} className={inputCls} onChange={handleChange} required />
                   </div>
-                  <span className="text-sm text-gray-600">{t.label}</span>
-                </label>
-              ))}
+                  <div>
+                    <label className={labelCls}>Category *</label>
+                    <select name="category" value={form.category} className={inputCls} onChange={handleChange} required>
+                      {["Bridal", "Party Wear", "Ethnic", "Kids Wear"].map((c) => <option key={c}>{c}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className={labelCls}>Price (₹) *</label>
+                    <input type="number" name="price" value={form.price} className={inputCls} onChange={handleChange} required />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Occasion</label>
+                    <input name="occasion" value={form.occasion} className={inputCls} onChange={handleChange} />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className={labelCls}>Fabric Material</label>
+                    <input name="fabric" value={form.fabric} className={inputCls} onChange={handleChange} />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Color Palette</label>
+                    <input name="color" value={form.color} className={inputCls} onChange={handleChange} />
+                  </div>
+                </div>
+
+                <div>
+                  <label className={labelCls}>Available Sizes</label>
+                  <input name="size" value={form.size} className={inputCls} onChange={handleChange} />
+                </div>
+
+                <div>
+                  <label className={labelCls}>Description</label>
+                  <textarea
+                    name="description"
+                    value={form.description}
+                    rows={4}
+                    className={inputCls + " resize-none"}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Toggles */}
+                <div className="flex flex-wrap gap-6 pt-3 border-t border-gray-100">
+                  {[
+                    { name: "featured", label: "Featured on Homepage", checked: form.featured },
+                    { name: "available", label: "Available for Booking", checked: form.available },
+                  ].map((t) => (
+                    <label key={t.name} className="flex items-center gap-3 cursor-pointer select-none">
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          name={t.name}
+                          checked={t.checked}
+                          onChange={handleChange}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-200 peer-checked:bg-rose-600 transition-colors rounded-full" />
+                        <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition-transform" />
+                      </div>
+                      <span className="text-sm text-gray-700 font-medium">{t.label}</span>
+                    </label>
+                  ))}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="btn-glow w-full bg-rose-700 hover:bg-rose-800 text-white py-4 text-xs tracking-[0.25em] uppercase font-medium rounded-xl transition-all duration-300 disabled:opacity-60 shadow-md shadow-rose-700/20 cursor-pointer"
+                >
+                  {loading ? "Saving Changes..." : "Save Changes"}
+                </button>
+              </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-rose-700 hover:bg-rose-800 text-white py-4 text-sm tracking-widest uppercase transition-all duration-300 disabled:opacity-60"
-            >
-              {loading ? "Saving..." : "Save Changes"}
-            </button>
-          </div>
-
-        </form>
-      </div>
+          </form>
+        </div>
       </div>
     </AdminLayout>
   );

@@ -39,18 +39,21 @@ function Stats() {
   }, []);
 
   return (
-    <section ref={ref} className="py-24 bg-rose-700">
-      <div className="max-w-7xl mx-auto px-6 md:px-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center text-white">
+    <section ref={ref} className="py-28 md:py-32 bg-gradient-to-br from-rose-700 via-rose-700 to-rose-800 relative overflow-hidden">
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)" }} />
+      
+      <div className="max-w-7xl mx-auto px-6 md:px-16 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-14 text-center text-white">
           {stats.map((s, i) => (
-            <div key={i} className="flex flex-col items-center">
+            <div key={i} className="flex flex-col items-center group">
               <p
-                className="text-6xl md:text-7xl font-bold leading-none"
+                className="text-5xl md:text-7xl font-bold leading-none group-hover:scale-105 transition-transform duration-300"
                 style={{ fontFamily: "Cormorant Garamond, serif" }}
               >
                 <AnimatedNumber inView={inView} end={s.end} suffix={s.suffix} />
               </p>
-              <div className="w-8 h-px bg-rose-300 my-4" />
+              <div className="w-8 h-px bg-rose-300/70 my-5 group-hover:w-12 transition-all duration-300" />
               <p className="text-rose-200 text-xs tracking-[0.4em] uppercase font-medium">
                 {s.label}
               </p>

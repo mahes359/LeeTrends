@@ -16,10 +16,7 @@ public class ImageService {
 
     public Map<String, Object> upload(MultipartFile image) throws Exception {
 
-        return cloudinary.uploader().upload(
-                image.getBytes(),
-                ObjectUtils.emptyMap()
-        );
+        return cloudinary.uploader().upload(image.getBytes(),ObjectUtils.emptyMap());
 
     }
 

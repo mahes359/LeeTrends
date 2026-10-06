@@ -9,10 +9,10 @@ const services = [
 
 function Services() {
   return (
-    <section className="py-24 md:py-36 bg-[#fdf8f5]">
+    <section className="py-28 md:py-40 bg-[#fdf8f5]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
 
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-18 md:mb-28">
           <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-4 font-medium">
             Why Choose Us
           </p>
@@ -22,14 +22,18 @@ function Services() {
           >
             The Lee Trends Promise
           </h2>
-          <div className="w-20 h-px bg-rose-400 mx-auto mt-8" />
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <div className="w-8 h-px bg-rose-300" />
+            <div className="w-2 h-2 rounded-full bg-rose-400" />
+            <div className="w-8 h-px bg-rose-300" />
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {services.map((s, i) => (
             <div
               key={i}
-              className="group relative bg-white border border-rose-100 p-10 hover:border-rose-300 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+              className="group relative bg-white border border-rose-100/80 p-10 lg:p-11 rounded-sm hover:border-rose-300 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
             >
               <span
                 className="absolute top-5 right-6 text-8xl font-bold text-rose-50 group-hover:text-rose-100 transition-colors duration-300 select-none leading-none"
@@ -38,7 +42,7 @@ function Services() {
                 {s.num}
               </span>
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-rose-50 group-hover:bg-rose-100 flex items-center justify-center mb-8 transition-colors duration-300">
+                <div className="w-16 h-16 bg-rose-50 group-hover:bg-rose-100 rounded-lg flex items-center justify-center mb-8 transition-all duration-300 group-hover:scale-105">
                   <s.icon className="text-rose-600" size={26} />
                 </div>
                 <h3
@@ -49,7 +53,7 @@ function Services() {
                 </h3>
                 <p className="text-gray-500 text-sm leading-8">{s.desc}</p>
               </div>
-              <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-500 group-hover:w-full transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-rose-400 to-rose-600 group-hover:w-full transition-all duration-500" />
             </div>
           ))}
         </div>

@@ -38,16 +38,58 @@ button {
   cursor: pointer;
 }
 
-/* Swiper custom arrows */
+/* ─── Brand Selection Color ─── */
+::selection {
+  background: rgba(225, 29, 72, 0.2);
+  color: #9f1239;
+}
+
+::-moz-selection {
+  background: rgba(225, 29, 72, 0.2);
+  color: #9f1239;
+}
+
+/* ─── Focus Visible (Accessibility) ─── */
+*:focus-visible {
+  outline: 2px solid rgba(225, 29, 72, 0.5);
+  outline-offset: 2px;
+}
+
+/* ─── Smooth Page Transitions ─── */
+main, section, footer {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Swiper custom arrows ─── */
 .swiper-button-next,
 .swiper-button-prev {
   color: #fff !important;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   width: 52px !important;
   height: 52px !important;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: scale(1.05);
 }
 
 .swiper-button-next::after,
@@ -58,9 +100,10 @@ button {
 
 .swiper-pagination-bullet {
   background: #fff !important;
-  opacity: 0.5;
+  opacity: 0.4;
   width: 8px;
   height: 8px;
+  transition: all 0.4s ease;
 }
 
 .swiper-pagination-bullet-active {
@@ -69,7 +112,130 @@ button {
   border-radius: 4px !important;
 }
 
-/* Scrollbar */
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #fdf8f5; }
-::-webkit-scrollbar-thumb { background: #d4a0b0; border-radius: 3px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e2a0b0, #c8788e);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #d4899c, #b86882);
+}
+
+/* ─── WhatsApp Pulse Animation ─── */
+@keyframes whatsappPulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+  70% { box-shadow: 0 0 0 14px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.whatsapp-pulse {
+  animation: whatsappPulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ─── 404 Floating Animation ─── */
+@keyframes float404 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.float-404 {
+  animation: float404 4s ease-in-out infinite;
+}
+
+/* ─── Skeleton Shimmer ─── */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ─── Hero Scroll Indicator ─── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* ─── Staggered mobile nav links ─── */
+@keyframes slideInLink {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mobile-nav-link {
+  animation: slideInLink 0.3s ease-out both;
+}
+
+/* ─── CTA Button Glow ─── */
+.btn-glow {
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 8px 25px -5px rgba(225, 29, 72, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-glow-green:hover {
+  box-shadow: 0 8px 25px -5px rgba(34, 197, 94, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ─── Card Lift ─── */
+.card-lift {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Image Zoom Container ─── */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* ─── Link Underline Grow ─── */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}

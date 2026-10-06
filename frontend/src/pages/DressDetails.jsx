@@ -43,7 +43,7 @@ function DressDetails() {
         <h1 className="text-4xl font-bold mb-5" style={{ fontFamily: "Cormorant Garamond, serif" }}>
           Dress Not Found
         </h1>
-        <Link to="/collections" className="mt-4 bg-rose-600 text-white px-10 py-4 text-sm tracking-widest uppercase hover:bg-rose-700 transition">
+        <Link to="/collections" className="btn-glow mt-4 bg-rose-600 text-white px-10 py-4 text-sm tracking-widest uppercase hover:bg-rose-700 transition rounded-sm">
           Back to Collections
         </Link>
       </div>
@@ -60,28 +60,29 @@ function DressDetails() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#fdf8f5] pt-28 pb-24">
+      <div className="min-h-screen bg-[#fdf8f5] pt-32 pb-28">
         <div className="max-w-7xl mx-auto px-6 md:px-16">
 
+          {/* Breadcrumb */}
           <Link
             to="/collections"
             className="inline-flex items-center gap-2 text-gray-400 hover:text-rose-600 text-sm tracking-wide transition-colors mb-14 group"
           >
-            <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-            Back to Collections
+            <FiArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
+            <span className="border-b border-transparent group-hover:border-rose-300 transition-colors duration-300">Back to Collections</span>
           </Link>
 
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
+          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
 
             {/* Image */}
-            <div className="relative group overflow-hidden bg-white shadow-xl">
+            <div className="img-zoom relative bg-white shadow-xl rounded-sm overflow-hidden">
               <img
                 src={dress.imageUrl}
                 alt={dress.name}
-                className="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full aspect-[3/4] object-cover"
               />
               {dress.featured && (
-                <span className="absolute top-5 left-5 bg-rose-600 text-white text-[10px] tracking-widest uppercase px-3 py-1.5">
+                <span className="absolute top-5 left-5 bg-rose-600 text-white text-[10px] tracking-widest uppercase px-4 py-1.5 rounded-sm shadow-md">
                   Featured
                 </span>
               )}
@@ -97,12 +98,12 @@ function DressDetails() {
                 {dress.name}
               </h1>
 
-              <div className="flex items-center gap-5 mt-7">
+              <div className="flex items-center gap-5 mt-8">
                 <p className="text-3xl font-bold text-rose-600" style={{ fontFamily: "Cormorant Garamond, serif" }}>
                   ₹ {dress.price?.toLocaleString()}
                 </p>
                 <span
-                  className={`text-xs tracking-widest uppercase px-4 py-2 font-medium ${
+                  className={`text-xs tracking-widest uppercase px-4 py-2 font-medium rounded-sm ${
                     dress.available
                       ? "bg-green-50 text-green-700 border border-green-200"
                       : "bg-red-50 text-red-700 border border-red-200"
@@ -114,7 +115,7 @@ function DressDetails() {
 
               <div className="w-full h-px bg-gray-200 my-10" />
 
-              <div className="space-y-5">
+              <div className="space-y-6">
                 {details.map((d, i) => (
                   <div key={i} className="flex items-start gap-6">
                     <span className="text-xs tracking-[0.3em] uppercase text-gray-400 w-24 shrink-0 pt-0.5">
@@ -129,7 +130,7 @@ function DressDetails() {
                 <>
                   <div className="w-full h-px bg-gray-200 my-10" />
                   <h2
-                    className="text-2xl font-semibold text-gray-900 mb-4"
+                    className="text-2xl font-semibold text-gray-900 mb-5"
                     style={{ fontFamily: "Cormorant Garamond, serif" }}
                   >
                     About this piece
@@ -138,27 +139,31 @@ function DressDetails() {
                 </>
               )}
 
-              <div className="flex flex-wrap gap-4 mt-12">
+              <div className="flex flex-wrap gap-4 mt-14">
                 <button
                   onClick={bookNow}
-                  className="flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300"
+                  className="btn-glow-green flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 rounded-sm"
                 >
                   <FaWhatsapp size={16} />
                   Book on WhatsApp
                 </button>
                 <Link
                   to="/collections"
-                  className="border border-rose-300 text-rose-600 hover:bg-rose-600 hover:text-white px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300"
+                  className="btn-glow border border-rose-300 text-rose-600 hover:bg-rose-600 hover:text-white px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 rounded-sm"
                 >
                   More Collections
                 </Link>
               </div>
 
-              <div className="mt-12 grid grid-cols-3 gap-6 border-t border-gray-100 pt-10">
-                {["Premium Fabric", "Custom Fit", "Fast Delivery"].map((b, i) => (
-                  <div key={i} className="text-center">
-                    <p className="text-rose-500 text-xl mb-2">✦</p>
-                    <p className="text-gray-500 text-xs tracking-wide">{b}</p>
+              <div className="mt-14 grid grid-cols-3 gap-6 border-t border-gray-100 pt-10">
+                {[
+                  { icon: "✦", label: "Premium Fabric" },
+                  { icon: "✦", label: "Custom Fit" },
+                  { icon: "✦", label: "Fast Delivery" },
+                ].map((b, i) => (
+                  <div key={i} className="text-center group">
+                    <p className="text-rose-500 text-xl mb-2 group-hover:scale-110 transition-transform duration-300 inline-block">{b.icon}</p>
+                    <p className="text-gray-500 text-xs tracking-wide">{b.label}</p>
                   </div>
                 ))}
               </div>

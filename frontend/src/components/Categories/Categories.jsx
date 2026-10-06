@@ -15,10 +15,10 @@ const categories = [
 
 function Categories() {
   return (
-    <section className="py-24 md:py-36 bg-white">
+    <section className="py-28 md:py-40 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
 
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-18 md:mb-28">
           <p className="text-rose-500 text-xs tracking-[0.5em] uppercase mb-4 font-medium">
             Explore
           </p>
@@ -28,32 +28,36 @@ function Categories() {
           >
             Our Collections
           </h2>
-          <div className="w-20 h-px bg-rose-400 mx-auto mt-8" />
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <div className="w-8 h-px bg-rose-300" />
+            <div className="w-2 h-2 rounded-full bg-rose-400" />
+            <div className="w-8 h-px bg-rose-300" />
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 h-auto lg:h-[640px]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-3 md:gap-4 h-auto lg:h-[660px]">
           {categories.map((item, i) => (
             <Link
               key={i}
               to="/collections"
-              className={`group relative overflow-hidden ${item.span} ${i === 0 ? "col-span-2 row-span-1 lg:col-span-2 lg:row-span-2" : ""}`}
+              className={`group relative overflow-hidden rounded-sm ${item.span} ${i === 0 ? "col-span-2 row-span-1 lg:col-span-2 lg:row-span-2" : ""}`}
             >
               <img
                 src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover min-h-[240px] group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent group-hover:from-black/85 transition-all duration-400" />
-              <div className="absolute bottom-0 left-0 p-7">
-                <p className="text-rose-300 text-xs tracking-[0.3em] uppercase mb-2">{item.subtitle}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent group-hover:from-black/85 transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 p-6 md:p-8">
+                <p className="text-rose-300 text-[10px] md:text-xs tracking-[0.3em] uppercase mb-2 drop-shadow-md">{item.subtitle}</p>
                 <h3
-                  className={`text-white font-bold ${i === 0 ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"}`}
+                  className={`text-white font-bold drop-shadow-lg ${i === 0 ? "text-2xl md:text-4xl" : "text-lg md:text-2xl"}`}
                   style={{ fontFamily: "Cormorant Garamond, serif" }}
                 >
                   {item.title}
                 </h3>
               </div>
-              <div className="absolute top-5 right-5 w-10 h-10 border border-white/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+              <div className="absolute top-4 right-4 md:top-5 md:right-5 w-9 h-9 md:w-10 md:h-10 border border-white/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 backdrop-blur-sm">
                 <span className="text-white text-sm">→</span>
               </div>
             </Link>
