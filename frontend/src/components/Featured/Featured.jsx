@@ -13,8 +13,8 @@ function Featured() {
   if (dresses.length === 0) return null;
 
   return (
-    <section className="py-20 md:py-28 bg-[#fdf8f5] relative">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
+    <section className="py-20 md:py-28 bg-[#fdf8f5] relative w-full">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12">
 
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 gap-6">

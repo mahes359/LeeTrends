@@ -38,7 +38,7 @@ function Navbar() {
           : "bg-white/95 backdrop-blur-xl shadow-xs border-b border-rose-100/70 py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 lg:px-16">
+      <div className="max-w-[1440px] mx-auto flex justify-between items-center px-5 sm:px-8 md:px-12">
 
         {/* Brand Logo */}
         <Link to="/" className="flex flex-col leading-none group">

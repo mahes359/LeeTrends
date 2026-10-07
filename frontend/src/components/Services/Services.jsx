@@ -29,8 +29,8 @@ const services = [
 
 function Services() {
   return (
-    <section className="py-20 md:py-28 bg-[#fdf8f5] relative border-b border-rose-100/60">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
+    <section className="py-20 md:py-28 bg-[#fdf8f5] relative border-b border-rose-100/60 w-full">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12">
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 md:mb-18">
@@ -58,7 +58,7 @@ function Services() {
           {services.map((s, i) => (
             <div
               key={i}
-              className="bg-white rounded-3xl p-6 sm:p-7 border border-rose-100/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-rose-100/80 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[290px] group"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">

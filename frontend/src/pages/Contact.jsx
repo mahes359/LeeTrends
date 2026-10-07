@@ -59,7 +59,7 @@ function Contact() {
                   {contactInfo.map((c, i) => (
                     <div
                       key={i}
-                      className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50/70 border border-gray-150 hover:bg-rose-50/30 hover:border-rose-200 transition-all duration-200"
+                      className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50/70 border border-rose-100/70 hover:bg-rose-50/30 hover:border-rose-200 transition-all duration-200"
                     >
                       <div className="w-10 h-10 rounded-xl bg-white text-rose-600 flex items-center justify-center shrink-0 shadow-xs border border-rose-100/60 mt-0.5">
                         <c.icon size={15} />

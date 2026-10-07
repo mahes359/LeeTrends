@@ -67,7 +67,7 @@ function DressDetails() {
 
   return (
     <div className="bg-[#fdf8f5] min-h-screen flex flex-col justify-between">
-      {/* Top Breadcrumb & Page Header */}
+      {/* Top Breadcrumb & Page Content */}
       <div className="pt-24 sm:pt-32 pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
 
@@ -129,7 +129,7 @@ function DressDetails() {
               <div className="bg-white p-6 sm:p-8 md:p-10 rounded-3xl shadow-xl shadow-rose-950/5 border border-rose-100/70 space-y-6">
                 
                 <div>
-                  <div className="inline-block px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200/60 text-[11px] tracking-[0.25em] uppercase font-semibold rounded-full mb-3">
+                  <div className="inline-block px-3.5 py-1 bg-rose-50 text-rose-700 border border-rose-200/60 text-[11px] tracking-[0.25em] uppercase font-semibold rounded-full mb-3">
                     {dress.category || "Designer Collection"}
                   </div>
                   <h1
@@ -141,7 +141,7 @@ function DressDetails() {
                 </div>
 
                 {/* Price & Stock Pill */}
-                <div className="flex flex-wrap items-baseline gap-3 p-4 bg-gradient-to-r from-rose-50/70 via-rose-50/30 to-transparent rounded-2xl border border-rose-100/80">
+                <div className="flex flex-wrap items-baseline gap-3 p-4 sm:p-5 bg-rose-50/50 rounded-2xl border border-rose-100/60">
                   <div className="text-3xl sm:text-4xl font-bold text-rose-800" style={{ fontFamily: "Cormorant Garamond, serif" }}>
                     ₹ {dress.price?.toLocaleString()}
                   </div>
@@ -150,25 +150,25 @@ function DressDetails() {
                   </span>
                 </div>
 
-                {/* Structured Specifications Grid */}
+                {/* Structured Specifications Grid — Zero Black Borders, Generous Padding */}
                 <div>
                   <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-3.5">
                     Garment Specifications
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
                     {specs.map((item, idx) => (
                       <div
                         key={idx}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-gray-50/70 border border-gray-150 hover:bg-rose-50/30 hover:border-rose-200/60 transition-all duration-200"
+                        className="flex items-center gap-3.5 p-4 rounded-2xl bg-rose-50/50 border border-rose-100/70 hover:bg-rose-50/80 transition-all duration-200"
                       >
-                        <div className="w-8 h-8 rounded-lg bg-white text-rose-600 flex items-center justify-center shrink-0 shadow-xs border border-rose-100/50">
-                          <item.icon size={14} />
+                        <div className="w-9 h-9 rounded-xl bg-white text-rose-700 flex items-center justify-center shrink-0 shadow-xs border border-rose-200/50">
+                          <item.icon size={15} />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="text-[10px] tracking-[0.18em] uppercase text-gray-400 font-medium">
+                          <p className="text-[10px] tracking-[0.18em] uppercase text-gray-400 font-semibold mb-0.5">
                             {item.label}
                           </p>
-                          <p className="text-xs sm:text-sm font-semibold text-gray-800 break-words">
+                          <p className="text-sm font-semibold text-gray-800 break-words leading-tight">
                             {item.value}
                           </p>
                         </div>
@@ -179,59 +179,61 @@ function DressDetails() {
 
                 {/* Description Box */}
                 {dress.description && (
-                  <div className="pt-4 border-t border-gray-100">
-                    <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-2">
+                  <div className="pt-2">
+                    <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-2.5">
                       Design Notes & Artistry
                     </h3>
-                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-light">
-                      {dress.description}
-                    </p>
+                    <div className="p-4 sm:p-5 rounded-2xl bg-gray-50/80 border border-rose-100/50">
+                      <p className="text-gray-700 text-xs sm:text-sm leading-relaxed font-light">
+                        {dress.description}
+                      </p>
+                    </div>
                   </div>
                 )}
 
-                {/* Call To Action Buttons Box */}
-                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
+                {/* Call To Action Buttons — Zero Wireframe/Black Borders */}
+                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3.5">
                   <button
                     onClick={bookNow}
-                    className="flex-1 btn-glow-green inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white py-3.5 sm:py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold shadow-lg shadow-emerald-600/20 transition-all duration-300 cursor-pointer"
+                    className="flex-1 inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white py-4 px-6 rounded-full text-xs tracking-[0.2em] uppercase font-bold shadow-lg shadow-emerald-600/20 transition-all duration-300 cursor-pointer"
                   >
-                    <FaWhatsapp size={18} />
+                    <FaWhatsapp size={19} />
                     <span>Book on WhatsApp</span>
                   </button>
 
                   <Link
                     to="/collections"
-                    className="inline-flex items-center justify-center bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200/80 py-3.5 sm:py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 text-center"
+                    className="inline-flex items-center justify-center bg-rose-100 hover:bg-rose-200 text-rose-900 border border-rose-200/80 py-4 px-6 rounded-full text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 text-center shadow-xs"
                   >
                     More Collections
                   </Link>
                 </div>
               </div>
 
-              {/* Trust Badges Card - Responsive Stacking on Mobile */}
-              <div className="bg-white p-5 sm:p-6 rounded-3xl shadow-md shadow-rose-950/5 border border-rose-100/70">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:divide-x divide-gray-100">
+              {/* Trust Badges Card — Clean, Soft & Borderless */}
+              <div className="bg-white p-6 sm:p-7 rounded-3xl shadow-md shadow-rose-950/5 border border-rose-100/70">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-4 text-center sm:divide-x divide-rose-100/60">
                   <div className="px-2">
-                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2 shadow-xs">
-                      <FaGem size={15} />
+                    <div className="w-11 h-11 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs border border-rose-100/50">
+                      <FaGem size={16} />
                     </div>
-                    <p className="text-xs font-semibold text-gray-800">Premium Fabrics</p>
+                    <p className="text-xs font-bold text-gray-800">Premium Fabrics</p>
                     <p className="text-[10px] text-gray-400 mt-0.5">Pure silks & brocades</p>
                   </div>
 
                   <div className="px-2">
-                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2 shadow-xs">
-                      <FaRulerCombined size={15} />
+                    <div className="w-11 h-11 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs border border-rose-100/50">
+                      <FaRulerCombined size={16} />
                     </div>
-                    <p className="text-xs font-semibold text-gray-800">Perfect Fit</p>
+                    <p className="text-xs font-bold text-gray-800">Perfect Fit</p>
                     <p className="text-[10px] text-gray-400 mt-0.5">Tailored to precision</p>
                   </div>
 
                   <div className="px-2">
-                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2 shadow-xs">
-                      <FaShippingFast size={15} />
+                    <div className="w-11 h-11 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs border border-rose-100/50">
+                      <FaShippingFast size={16} />
                     </div>
-                    <p className="text-xs font-semibold text-gray-800">On-Time Handover</p>
+                    <p className="text-xs font-bold text-gray-800">On-Time Handover</p>
                     <p className="text-[10px] text-gray-400 mt-0.5">Prior to your event</p>
                   </div>
                 </div>

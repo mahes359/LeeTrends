@@ -83,8 +83,8 @@ function About() {
         </div>
 
         {/* Who We Are Story */}
-        <section className="py-24 md:py-32 bg-[#fdf8f5]">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <section className="py-20 md:py-28 bg-[#fdf8f5] w-full">
+          <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 space-y-6">
               <span className="inline-block px-3.5 py-1 bg-rose-100/70 text-rose-700 border border-rose-200/60 text-[10px] tracking-[0.3em] uppercase font-semibold rounded-full">
                 The Lee Trends Story
@@ -138,8 +138,8 @@ function About() {
         </section>
 
         {/* Core Values Grid */}
-        <section className="py-24 md:py-32 bg-white border-t border-rose-100/60">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+        <section className="py-20 md:py-28 bg-white border-t border-rose-100/60 w-full">
+          <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12">
             <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
               <span className="inline-block px-3.5 py-1 bg-rose-50 text-rose-700 border border-rose-200/60 text-[10px] tracking-[0.3em] uppercase font-semibold rounded-full mb-3">
                 Our Standards

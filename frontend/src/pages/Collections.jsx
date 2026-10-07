@@ -51,7 +51,7 @@ function Collections() {
         </div>
 
         {/* Content Container */}
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pb-20 md:pb-28">
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 pb-20 md:pb-28">
 
           {/* Unified Filter & Search Bar Box */}
           <div className="bg-white rounded-3xl p-3.5 sm:p-5 border border-rose-100/80 shadow-xs mb-8 flex flex-col md:flex-row gap-3.5 sm:gap-4 items-center justify-between">
@@ -66,7 +66,7 @@ function Collections() {
                     className={`px-4 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-xs tracking-wider uppercase font-semibold rounded-full transition-all duration-300 cursor-pointer ${
                       isActive
                         ? "bg-rose-700 text-white shadow-md shadow-rose-900/20"
-                        : "bg-gray-50 text-gray-600 hover:bg-rose-50 hover:text-rose-700 border border-gray-150"
+                        : "bg-gray-50 text-gray-600 hover:bg-rose-50 hover:text-rose-700 border border-rose-200/60"
                     }`}
                   >
                     {cat}
@@ -79,7 +79,7 @@ function Collections() {
             <div className="relative w-full md:w-80">
               <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
               <input
-                className="w-full border border-gray-200 bg-gray-50/70 pl-11 pr-4 py-2.5 text-xs sm:text-sm rounded-full placeholder-gray-400 focus:outline-none focus:border-rose-400 focus:bg-white focus:ring-2 focus:ring-rose-100 transition-all duration-300"
+                className="w-full border border-rose-200/60 bg-gray-50/70 pl-11 pr-4 py-2.5 text-xs sm:text-sm rounded-full placeholder-gray-400 focus:outline-none focus:border-rose-400 focus:bg-white focus:ring-2 focus:ring-rose-100 transition-all duration-300"
                 placeholder="Search by dress name..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}

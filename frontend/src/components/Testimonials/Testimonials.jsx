@@ -16,7 +16,7 @@ function Testimonials() {
       <div className="absolute top-0 left-0 w-96 h-96 bg-rose-900/25 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-rose-900/20 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 relative z-10">
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">

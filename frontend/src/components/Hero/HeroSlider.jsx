@@ -74,7 +74,7 @@ function HeroSlider() {
 
       {/* Hero Typography & CTA Overlay */}
       <div className="absolute inset-0 z-10 flex items-center pointer-events-none">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full pt-16">
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 w-full pt-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}

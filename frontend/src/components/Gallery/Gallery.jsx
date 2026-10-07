@@ -13,8 +13,8 @@ function Gallery() {
   }, []);
 
   return (
-    <section className="py-24 md:py-32 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+    <section className="py-20 md:py-28 bg-white relative w-full">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12">
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">

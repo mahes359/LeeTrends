@@ -49,7 +49,7 @@ function Stats() {
       {/* Decorative Radial Background */}
       <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.25) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.2) 0%, transparent 50%)" }} />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {stats.map((s, i) => (
             <div
