@@ -13,17 +13,17 @@ function Featured() {
   if (dresses.length === 0) return null;
 
   return (
-    <section className="py-24 md:py-32 bg-[#fdf8f5] relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+    <section className="py-20 md:py-28 bg-[#fdf8f5] relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
 
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 md:mb-20 gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 gap-6">
           <div>
             <span className="inline-block px-3.5 py-1 bg-rose-100/70 text-rose-700 border border-rose-200/60 text-[10px] tracking-[0.3em] uppercase font-semibold rounded-full mb-3">
               Curated Showcase
             </span>
             <h2
-              className="text-4xl md:text-5xl font-bold text-gray-900 tracking-wide"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 tracking-wide"
               style={{ fontFamily: "Cormorant Garamond, serif" }}
             >
               Featured Masterpieces
@@ -38,8 +38,18 @@ function Featured() {
           </Link>
         </div>
 
-        {/* Unified Luxury Cards Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Adaptive Luxury Cards Grid */}
+        <div
+          className={`grid gap-6 ${
+            dresses.length === 1
+              ? "max-w-md mx-auto grid-cols-1"
+              : dresses.length === 2
+              ? "max-w-3xl mx-auto grid-cols-1 sm:grid-cols-2"
+              : dresses.length === 3
+              ? "max-w-5xl mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          }`}
+        >
           {dresses.map((dress) => (
             <Link
               to={`/dress/${dress.id}`}
@@ -47,7 +57,7 @@ function Featured() {
               className="bg-white rounded-3xl p-3.5 border border-rose-100/70 shadow-xs hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-400 flex flex-col justify-between group"
             >
               {/* Product Image Box */}
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-50 mb-4">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-50 mb-3.5">
                 <img
                   src={dress.imageUrl}
                   alt={dress.name}
@@ -77,21 +87,21 @@ function Featured() {
               </div>
 
               {/* Product Info Box */}
-              <div className="p-3 pt-0 flex flex-col justify-between flex-1">
+              <div className="p-2.5 pt-0 flex flex-col justify-between flex-1">
                 <div>
                   <span className="text-rose-500 text-[10px] tracking-[0.25em] uppercase font-semibold">
                     {dress.category}
                   </span>
                   <h3
-                    className="text-gray-900 text-xl font-bold mt-1 line-clamp-1 group-hover:text-rose-700 transition-colors"
+                    className="text-gray-900 text-lg sm:text-xl font-bold mt-1 line-clamp-1 group-hover:text-rose-700 transition-colors"
                     style={{ fontFamily: "Cormorant Garamond, serif" }}
                   >
                     {dress.name}
                   </h3>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                  <p className="text-rose-700 font-bold text-base">
+                <div className="mt-3.5 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <p className="text-rose-700 font-bold text-base sm:text-lg">
                     ₹ {dress.price?.toLocaleString()}
                   </p>
                   <span className="text-[11px] tracking-wider uppercase font-medium text-gray-400 group-hover:text-rose-600 transition-colors">

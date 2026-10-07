@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import API from "../services/api";
 import Footer from "../components/Footer/Footer";
-import { FaWhatsapp, FaGem, FaRulerCombined, FaShippingFast, FaCheckCircle } from "react-icons/fa";
+import { FaWhatsapp, FaGem, FaRulerCombined, FaShippingFast } from "react-icons/fa";
 import { FiArrowLeft, FiTag, FiLayers, FiMaximize2, FiCalendar, FiDroplet } from "react-icons/fi";
 import config from "../config";
 
@@ -68,14 +68,14 @@ function DressDetails() {
   return (
     <div className="bg-[#fdf8f5] min-h-screen flex flex-col justify-between">
       {/* Top Breadcrumb & Page Header */}
-      <div className="pt-28 md:pt-36 pb-16 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+      <div className="pt-24 sm:pt-32 pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
 
           {/* Navigation Bar */}
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-6 sm:mb-8 flex items-center justify-between">
             <Link
               to="/collections"
-              className="inline-flex items-center gap-2.5 text-xs tracking-wider uppercase font-medium text-gray-500 hover:text-rose-700 transition-colors bg-white/80 hover:bg-white px-4 py-2 rounded-full border border-rose-100 shadow-xs group"
+              className="inline-flex items-center gap-2 text-xs tracking-wider uppercase font-medium text-gray-500 hover:text-rose-700 transition-colors bg-white/80 hover:bg-white px-4 py-2 rounded-full border border-rose-100 shadow-xs group"
             >
               <FiArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
               <span>Back to Collections</span>
@@ -91,7 +91,7 @@ function DressDetails() {
 
             {/* Left Column: Portrait Showcase Box */}
             <div className="lg:col-span-6 xl:col-span-6">
-              <div className="bg-white p-3 sm:p-4 rounded-3xl shadow-xl shadow-rose-950/5 border border-rose-100/70 sticky top-28">
+              <div className="bg-white p-3 sm:p-4 rounded-3xl shadow-xl shadow-rose-950/5 border border-rose-100/70 lg:sticky lg:top-28">
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-rose-50/30 group">
                   <img
                     src={dress.imageUrl}
@@ -126,7 +126,7 @@ function DressDetails() {
             <div className="lg:col-span-6 xl:col-span-6 space-y-6">
 
               {/* Header & Pricing Box */}
-              <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-xl shadow-rose-950/5 border border-rose-100/70 space-y-6">
+              <div className="bg-white p-6 sm:p-8 md:p-10 rounded-3xl shadow-xl shadow-rose-950/5 border border-rose-100/70 space-y-6">
                 
                 <div>
                   <div className="inline-block px-3 py-1 bg-rose-50 text-rose-700 border border-rose-200/60 text-[11px] tracking-[0.25em] uppercase font-semibold rounded-full mb-3">
@@ -141,7 +141,7 @@ function DressDetails() {
                 </div>
 
                 {/* Price & Stock Pill */}
-                <div className="flex flex-wrap items-baseline gap-4 p-4 bg-gradient-to-r from-rose-50/70 via-rose-50/30 to-transparent rounded-2xl border border-rose-100/80">
+                <div className="flex flex-wrap items-baseline gap-3 p-4 bg-gradient-to-r from-rose-50/70 via-rose-50/30 to-transparent rounded-2xl border border-rose-100/80">
                   <div className="text-3xl sm:text-4xl font-bold text-rose-800" style={{ fontFamily: "Cormorant Garamond, serif" }}>
                     ₹ {dress.price?.toLocaleString()}
                   </div>
@@ -152,23 +152,23 @@ function DressDetails() {
 
                 {/* Structured Specifications Grid */}
                 <div>
-                  <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-4">
+                  <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-3.5">
                     Garment Specifications
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                     {specs.map((item, idx) => (
                       <div
                         key={idx}
-                        className="flex items-center gap-3.5 p-3.5 rounded-xl bg-gray-50/70 border border-gray-150 hover:bg-rose-50/30 hover:border-rose-200/60 transition-all duration-200"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-gray-50/70 border border-gray-150 hover:bg-rose-50/30 hover:border-rose-200/60 transition-all duration-200"
                       >
                         <div className="w-8 h-8 rounded-lg bg-white text-rose-600 flex items-center justify-center shrink-0 shadow-xs border border-rose-100/50">
                           <item.icon size={14} />
                         </div>
-                        <div className="min-w-0">
-                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 font-medium">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[10px] tracking-[0.18em] uppercase text-gray-400 font-medium">
                             {item.label}
                           </p>
-                          <p className="text-sm font-semibold text-gray-800 truncate">
+                          <p className="text-xs sm:text-sm font-semibold text-gray-800 break-words">
                             {item.value}
                           </p>
                         </div>
@@ -180,20 +180,20 @@ function DressDetails() {
                 {/* Description Box */}
                 {dress.description && (
                   <div className="pt-4 border-t border-gray-100">
-                    <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-2.5">
+                    <h3 className="text-xs tracking-[0.25em] uppercase font-semibold text-gray-400 mb-2">
                       Design Notes & Artistry
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed font-light">
+                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-light">
                       {dress.description}
                     </p>
                   </div>
                 )}
 
                 {/* Call To Action Buttons Box */}
-                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3.5">
+                <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={bookNow}
-                    className="flex-1 btn-glow-green inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold shadow-lg shadow-emerald-600/20 transition-all duration-300 cursor-pointer"
+                    className="flex-1 btn-glow-green inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white py-3.5 sm:py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold shadow-lg shadow-emerald-600/20 transition-all duration-300 cursor-pointer"
                   >
                     <FaWhatsapp size={18} />
                     <span>Book on WhatsApp</span>
@@ -201,35 +201,35 @@ function DressDetails() {
 
                   <Link
                     to="/collections"
-                    className="inline-flex items-center justify-center bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200/80 py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 text-center"
+                    className="inline-flex items-center justify-center bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200/80 py-3.5 sm:py-4 px-6 rounded-2xl text-xs tracking-[0.2em] uppercase font-semibold transition-all duration-300 text-center"
                   >
                     More Collections
                   </Link>
                 </div>
               </div>
 
-              {/* Trust Badges Card */}
-              <div className="bg-white p-6 rounded-3xl shadow-md shadow-rose-950/5 border border-rose-100/70">
-                <div className="grid grid-cols-3 gap-4 text-center divide-x divide-gray-100">
+              {/* Trust Badges Card - Responsive Stacking on Mobile */}
+              <div className="bg-white p-5 sm:p-6 rounded-3xl shadow-md shadow-rose-950/5 border border-rose-100/70">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:divide-x divide-gray-100">
                   <div className="px-2">
-                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs">
-                      <FaGem size={16} />
+                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2 shadow-xs">
+                      <FaGem size={15} />
                     </div>
                     <p className="text-xs font-semibold text-gray-800">Premium Fabrics</p>
                     <p className="text-[10px] text-gray-400 mt-0.5">Pure silks & brocades</p>
                   </div>
 
                   <div className="px-2">
-                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs">
-                      <FaRulerCombined size={16} />
+                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2 shadow-xs">
+                      <FaRulerCombined size={15} />
                     </div>
                     <p className="text-xs font-semibold text-gray-800">Perfect Fit</p>
                     <p className="text-[10px] text-gray-400 mt-0.5">Tailored to precision</p>
                   </div>
 
                   <div className="px-2">
-                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2.5 shadow-xs">
-                      <FaShippingFast size={16} />
+                    <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto mb-2 shadow-xs">
+                      <FaShippingFast size={15} />
                     </div>
                     <p className="text-xs font-semibold text-gray-800">On-Time Handover</p>
                     <p className="text-[10px] text-gray-400 mt-0.5">Prior to your event</p>
